@@ -1,20 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import React, { useState } from "react";
+import Navigation from './navigation/Navigation';
+
+import {
+  SafeAreaView,
+  SafeAreaProvider,
+} from 'react-native-safe-area-context';
 
 export default function App() {
+    //safearea
+    //mettre le navigateur ayant le princ
   return (
-    <View style={styles.container}>
-      <Text>Vroum Vroum i'm in my mom's car  </Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <Navigation/>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
