@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import StackNavigation from '../navigation/StackNavigation' 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-import Button from 'react-bootstrap/Button';
+//import Button from 'react-bootstrap/Button';
 
 // @ts-ignore //(ta gueule pour l'erreur sur navigation)
 export default function HomeScreen({navigation}) {
