@@ -8,6 +8,7 @@ const reducer = {
 
 // @ts-ignore
 const store = configureStore({
+    // @ts-ignore
     reducer,
 },);
 

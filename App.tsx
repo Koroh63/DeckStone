@@ -18,25 +18,29 @@ import {
 
 import { Provider } from 'react-redux';
 
-// export default function App() {
-//     //safearea
-//     //mettre le navigateur ayant le princ
-//   return (
-//     <SafeAreaProvider>
-//       <Navigation/>
-//     </SafeAreaProvider>
-//   );
-// }
-
 export default function App() {
+    //safearea
+    //mettre le navigateur ayant le princ
   return (
-    <>
-      {/* Bind your application store to the Provider store */}
-      <Provider store={store}>
-        <SafeAreaProvider>
-          <Navigation/>
-        </SafeAreaProvider>
-      </Provider>
-    </>
+    <SafeAreaProvider>
+      <Navigation/>
+    </SafeAreaProvider>
   );
 }
+
+
+
+///décommenter quand API Fonctionnel///
+
+// export default function App() {
+//   return (
+//     <>
+//       {/* Bind your application store to the Provider store */}
+//       <Provider store={store}>
+//         <SafeAreaProvider>
+//           <Navigation/>
+//         </SafeAreaProvider>
+//       </Provider>
+//     </>
+//   );
+// }
