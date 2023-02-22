@@ -3,16 +3,18 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from "react";
 
-
-export default function Main(){
+export default async function Main() {
     const [count, setCount] = useState(0);
+    const {getCards} = new StubLib();
+    const list: Card[] = getCards();
     return (
         <View style={styles.container}>
             <View style={styles.border}>
                 <Text>Maman, prend la caméra ! !</Text>
-                <StatusBar style="auto" />
+                <StatusBar style="auto"/>
                 <Text>{count}</Text>
-                <Button onPress={()=> setCount(count+1)} title="+1"/>
+                <Text>{list.at(0)?.name}</Text>
+                <Button onPress={() => setCount(count + 1)} title="+1"/>
             </View>
         </View>
     );
