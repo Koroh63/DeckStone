@@ -3,34 +3,8 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from "react";
 import { FlatList } from 'react-native-gesture-handler';
-
-
-export const DATA = [
-    {
-        id: '1',
-        title: "premier élément",
-    },
-    {
-        id: '2',
-        title: "second élément",
-    },
-    {
-        id: '3',
-        title: "élément",
-    },
-    {
-        id: '4',
-        title: "Rick",
-    },
-    {
-        id: '5',
-        title: "Corentin",
-    },
-    {
-        id: '10',
-        title: "dernier élément",
-    },
-];
+import { StubLib } from '../data/stub';
+import { Card } from '../models/Card';
 
 //@ts-ignore
 const Item = ({title}) => (
@@ -39,23 +13,23 @@ const Item = ({title}) => (
     </View>
 );
 
-export default async function Main() {
+export default function Main() {
     const [count, setCount] = useState(0);
     const {getCards} = new StubLib();
     const list: Card[] = getCards();
+    const req =  fetch('https://omgvamp-hearthstone-v1.p.rapidapi.com/cards')
+    
+
     return (
         <View style={styles.container}>
-            <View style={styles.border}>
-                <Text>Maman, prend la caméra ! !</Text>
-                <StatusBar style="auto"/>
-                <Text>{count}</Text>
-                <Text>{list.at(0)?.name}</Text>
-                <Button onPress={() => setCount(count + 1)} title="+1"/>
-            </View>
-            <FlatList data={DATA}         
-            renderItem={({item}) => <Item title={item.title} />}
+            <Text>{}</Text>
+            <FlatList data={list}         
+            renderItem={({item}) => <Item title={item.name} />}
             keyExtractor={item => item.id}/>
+
         </View>
+
+        
     );
 }
 
