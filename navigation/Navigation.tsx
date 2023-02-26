@@ -10,6 +10,7 @@ import ListScreen from '../screens/ListScreen';
 import ListFav from '../screens/ListFav';
 
 import TabBarIcon from '../components/TabBarIcon';
+import StackNavigation from './StackNavigation';
 
 
 
@@ -24,14 +25,16 @@ export default function Navigation() {
                                                 title: 'List',
                                                 tabBarIcon: ({color}) => <TabBarIcon name="list" color={color}/>,
                                             }}/>
-                <BottomTabNavigator.Screen name="Home" component={HomeScreen}
+                <BottomTabNavigator.Screen name="Home" component={StackNavigation}
                                             options={{
                                                 title: 'Home',
                                                 tabBarIcon: ({color}) => <TabBarIcon name="home" color={color}/>,
-                                            }}/>
+                                                headerShown: false
+                                            }}
+                                            />
                 <BottomTabNavigator.Screen name="ListFav" component={ListFav}
                                             options={{
-                                                title: 'ListFav',
+                                                title: 'Liste de Favoris ♥',
                                                 tabBarIcon: ({color}) => <TabBarIcon name="heart" color={color}/>,
                                             }}/>
             </BottomTabNavigator.Navigator>
