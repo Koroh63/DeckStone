@@ -1,6 +1,6 @@
 import { setCardsList } from "./action_setCardsList";
 
-
+//! se fichier devra possiblement changer de dossier !!!
 
 //! classe pour tester
 export class Card {
@@ -52,6 +52,7 @@ export const getAllCards = () => {
       
       //call the action 
       dispatch(setCardsList(CardsList));
+      
     } catch (error) {
       console.log('Error---------', error);
       //You can dispatch to another action if you want to display an error message in the application

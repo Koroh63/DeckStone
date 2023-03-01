@@ -1,8 +1,16 @@
 
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableHighlight } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FlatList } from 'react-native-gesture-handler';
+import {useDispatch, useSelector} from 'react-redux';
+
+import { ThunkAction } from 'redux-thunk';
+
+
+//? possiblement à supprimer
+import { Card, getAllCards } from "../redux/actions/getAllCards"
+
 
 
 export const DATA = [
@@ -39,9 +47,30 @@ const Item = ({title}) => (
     </View>
 );
 
-
-export default function Main(){
+//@ts-ignore
+export default function ListScreen({navigation}){
     const [count, setCount] = useState(0);
+
+
+
+    //  // Initialize the binding content with the application initial state
+
+    // //@ts-ignore
+    
+    // const nList = useSelector(state => state.cards);
+    // // Create a const that will hold the react-redux events dispatcher
+    // const dispatch = useDispatch();
+    
+    // // Let's define a hook that will be used to update the rendered state after the return will be called
+    // // You cannot perform side-effects outside of a useEffect hook
+
+    // useEffect(() => {
+    //     const loadCards = async () => {
+    //         await dispatch(getAllCards());
+    //     };
+    //     loadCards();
+    // }, [dispatch]);
+
     return (
         <View style={styles.container}>
             <View style={styles.border}>
@@ -53,6 +82,14 @@ export default function Main(){
             <FlatList data={DATA}         
             renderItem={({item}) => <Item title={item.title} />}
             keyExtractor={item => item.id}/>
+
+            {/* <FlatList data={nList} renderItem={({item}) =>
+                    
+                    //<TouchableHighlight onPress={() => navigation.navigate("CardsDetails", {"card": item})}> //* mettre la page de detail ici, renvoi a home pour l'instant
+                    <TouchableHighlight onPress={() => navigation.navigate("HomeScreen")}>
+                        <Item title={item.name}/>
+                    </TouchableHighlight>
+                } keyExtractor={(item: Card) => item.name}/> */}
         </View>
     );
 }
