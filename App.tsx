@@ -8,7 +8,7 @@ import StackNavigation from './navigation/StackNavigation';
 import { createStackNavigator } from '@react-navigation/stack';
 
 // Import your application store
-import store from "./redux/store";
+//import store from "./redux/store";
 
 
 import {
