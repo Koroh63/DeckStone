@@ -1,10 +1,12 @@
 
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, ImageComponent } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from "react";
 import { FlatList } from 'react-native-gesture-handler';
 import { StubLib } from '../data/stub';
 import { Card } from '../models/Card';
+import { Image } from 'react-native';
+import { ImageURISource } from 'react-native';
 
 //@ts-ignore
 const Item = ({title}) => (
@@ -22,11 +24,19 @@ export default function Main() {
 
     return (
         <View style={styles.container}>
-            <Text>{}</Text>
-            <FlatList data={list}         
-            renderItem={({item}) => <Item title={item.name} />}
-            keyExtractor={item => item.id}/>
-
+            <FlatList 
+                numColumns = {2}  
+                data={list}       
+                renderItem={({item}) => (
+                    <View>
+                        <Image
+                            source={{ uri: item.img }}
+                        style={{flex: 1, minHeight: 250,minWidth: 180}}
+                    />
+                </View>
+                )}
+                keyExtractor={item => item.id}
+            />
         </View>
 
         
@@ -38,11 +48,10 @@ export default function Main() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ffffff',
+        backgroundColor: '#ac9585',
         alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 5,
-        borderColor : "#ff00ff",
+        justifyContent: 'space-evenly',
+        
     },
     border: {
         flex: 1,
