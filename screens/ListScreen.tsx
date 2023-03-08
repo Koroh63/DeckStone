@@ -13,6 +13,8 @@ import { getAllCards } from "../redux/actions/actionSelection"
 
 import { StubLib } from '../data/stub';
 import { Card } from '../models/Card';
+import { Image } from 'react-native';
+import { ImageURISource } from 'react-native';
 
 //@ts-ignore
 const Item = ({title}) => (
@@ -80,11 +82,10 @@ export default function ListScreen({navigation}){
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ffffff',
+        backgroundColor: '#ac9585',
         alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 5,
-        borderColor : "#ff00ff",
+        justifyContent: 'space-evenly',
+        
     },
     border: {
         flex: 1,

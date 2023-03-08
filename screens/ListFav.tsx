@@ -97,8 +97,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-        borderWidth: 5,
-        borderColor : "#cacaca",
     },
     item: {
         borderRadius : 15,

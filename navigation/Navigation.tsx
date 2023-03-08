@@ -23,7 +23,7 @@ export default function Navigation() {
                 <BottomTabNavigator.Screen name="List" component={ListScreen}
                                             options={{
                                                 title: 'List',
-                                                tabBarIcon: ({color}) => <TabBarIcon name="list" color={color}/>,
+                                                tabBarIcon: ({color}) => <TabBarIcon name="th-large" color={color}/>,
                                             }}/>
                 <BottomTabNavigator.Screen name="Home" component={StackNavigation}
                                             options={{
