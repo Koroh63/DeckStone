@@ -1,5 +1,5 @@
 
-import { StyleSheet, Text, View, Button, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableHighlight, Pressable } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from "react";
 import { FlatList } from 'react-native-gesture-handler';
@@ -26,7 +26,6 @@ const Item = ({url}) => (
         <Image 
         source={{uri:url}}
         style={{flex:1, minHeight:250, minWidth:180}}/>
-
     </View>
 );
 
@@ -37,11 +36,12 @@ export default function ListScreen({navigation}){
     // get the current theme
     //@ts-ignore
     const theme = useSelector(state => state.theme);
-
-    //  // Initialize the binding content with the application initial state
-
     //@ts-ignore
     const nList = useSelector(state => state.appReducer.cards);
+    
+    //@ts-ignore
+    const mode = useSelector(state => state.appReducer.mode);
+
     // Create a const that will hold the react-redux events dispatcher
     const dispatch = useDispatch();
     
@@ -56,62 +56,44 @@ export default function ListScreen({navigation}){
         loadCards();
     }, [dispatch]);
 
-
-
-    //* Stub
-    // const {getCards} = new StubLib();
-    // const list: Card[] = getCards();
-    // const req =  fetch('https://omgvamp-hearthstone-v1.p.rapidapi.com/cards')
-
-    //https://us.api.blizzard.com/hearthstone/cards/678?locale=en_US
-
-
     //* Themes *//
     
     // define a component mode state
 
-    const [mode, setMode] = useState(theme.mode);
+    //const [mode, setMode] = useState(theme.mode);
 
     // Handle changing the theme mode
-    const handleThemeChange = () => { 
-        dispatch(switchMode(theme.mode === 'light' ? 'dark' : 'light'));
+
+    //@ts-ignore
+    const handleThemeChange = (mode) => { 
+        dispatch(switchMode(mode === 'light' ? 'dark' : 'light'));
     }
 
     // Update the app Incase the theme mode changes
-    useEffect(() => { 
-        setMode(theme.mode);
-    }, [theme]);
+    // useEffect(() => { 
+    //     setMode(theme.mode);
+    // }, [theme]);
 
 
 
     return (
-        <View style={styles.container}>
-        {/* <FlatList data={nList}         
-        renderItem={({item}) => <Item title={item.name} />}
-        keyExtractor={item => item.id}/> */}
+        <View style={mode === 'light' ? styles.container_light : styles.container_dark}>
+            <Pressable style={mode === 'light' ? styles.button_white : styles.button_black} onPress={() => handleThemeChange(mode)}>
+                <Text>Switch Mode</Text>
+            </Pressable>
+            <FlatList 
+                numColumns={2}
+                data={nList} 
+                renderItem={({item}) =>
+                    
+                    //<TouchableHighlight onPress={() => navigation.navigate("CardsDetails", {"card": item})}> //* mettre la page de detail ici, renvoi a home pour l'instant
+                    <TouchableHighlight onPress={() => navigation.navigate("ListFav")}>
+                        <Item url={item.img}/>
+                    </TouchableHighlight>
 
-        <FlatList 
-            numColumns={2}
-            data={nList} 
-            renderItem={({item}) =>
-                
-                //<TouchableHighlight onPress={() => navigation.navigate("CardsDetails", {"card": item})}> //* mettre la page de detail ici, renvoi a home pour l'instant
-                <TouchableHighlight onPress={() => navigation.navigate("ListFav")}>
-                    <Item url={item.img}/>
-                </TouchableHighlight>
-                
-                // //<Text>{item.name}</Text>
-                // // <View>
-                // //     <Image 
-                // //     source={{uri:item.img}}
-                // //     style={{flex:1, minHeight:250, minWidth:180}}/>
-
-                // // </View>
-            } keyExtractor={(item: Card) => item.id.toString()}/>
-    </View>
-
-    
-);
+                } keyExtractor={(item: Card) => item.id.toString()}/>
+        </View>
+    );
 }
 
 
@@ -143,30 +125,44 @@ const styles = StyleSheet.create({
     title: {
         fontStyle: "italic",
     },
+
+    ///themes
     container_light: {
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-    }
-
-    ,
+    },
     container_dark: {
         flex: 1,
         backgroundColor: '#121212',
         alignItems: 'center',
         justifyContent: 'center',
-    }
-
-    ,
+    },
     text_light: {
         marginBottom: 20,
         color: '#000'
-    }
-
-    ,
+    },
     text_dark: {
         marginBottom: 20,
         color: "#fff"
+    },
+    button_black: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 12,
+        paddingHorizontal: 32,
+        borderRadius: 4,
+        elevation: 3,
+        backgroundColor: 'black',
+    },
+    button_white: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 12,
+        paddingHorizontal: 32,
+        borderRadius: 4,
+        elevation: 3,
+        backgroundColor: 'white',
     }
 });
