@@ -74,6 +74,7 @@ export const getAllCards = () => {
       
       //console.log(CardsList)
       //call the action 
+      
       dispatch(setCardsList(CardsList));
       
     } catch (error) {
