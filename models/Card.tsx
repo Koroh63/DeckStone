@@ -1,13 +1,16 @@
 import {isValidNumber} from "react-native-gesture-handler/lib/typescript/web_hammer/utils";
+import {CardSet} from "./CardSet";
+import {Type} from "./Type";
+import {Classe} from "./Classe";
 
 export class Card {
 
-    constructor(id: string,name :string,set : string,type : string,faction : string,rarity : string,cost : number,attack : number, health : number, desc : string,flavor : string,artist : string,collectible : boolean,elite : boolean,race : string, img : string, imgGold : string) {
+    constructor(id: number,name :string,set : CardSet,type : Type,clas : Classe,rarity : string,cost : number,attack : number, health : number, desc : string,flavor : string,artist : string,collectible : boolean,elite : boolean,race : string, img : string, imgGold : string, cropImg :string) {
         this._id=id
         this._name=name
         this._set=set
         this._type=type
-        this._faction=faction
+        this._class=clas
         this._rarity=rarity
         this._cost=cost
         this._attack = attack
@@ -16,17 +19,16 @@ export class Card {
         this._flavor = flavor
         this._artist = artist
         this._collectible = collectible
-        this._elite = elite
-        this._race = race
         this._img = img
         this._imgGold = imgGold
+        this._cropImg = cropImg
 
     }
 
     // ID //
 
-    private _id : string;
-        get id(): string {
+    private _id : number;
+        get id(): number {
             return this._id
         }
 
@@ -40,30 +42,30 @@ export class Card {
         }
 
 
-    private _set : string;
-        get set(): string{
+    private _set : CardSet;
+        get set(): CardSet{
             return this._set
         }
 
-        set set(value : string){
+        set set(value : CardSet){
             this._set = value
         }
 
-    private _type : string;
-        get type():string{
+    private _type : Type;
+        get type():Type{
             return this._type
         }
-        set type(value : string){
+        set type(value : Type){
             this._type=value
         }
 
-    private _faction : string;
+    private _class : Classe;
 
-    get faction():string{
-        return this._faction
+    get class():Classe{
+        return this._class
     }
-    set faction(value : string){
-        this._faction=value
+    set class(value : Classe){
+        this._class=value
     }
     private _rarity : string
 
@@ -128,22 +130,6 @@ export class Card {
     set collectible(value: boolean ){
         this._collectible = value;
     }
-    private _elite : boolean
-    get elite(): boolean {
-        return this._elite;
-    }
-    set elite(value: boolean) {
-        this._elite = value ;
-    }
-
-    private _race : string
-    get race(): string {
-        return this._race;
-    }
-    set race(value: string) {
-        this._race = value ;
-    }
-
 
     private _img : string
 
@@ -161,5 +147,12 @@ export class Card {
         set imgGold(value: string) {
             this._imgGold = value ;
         }
+    private _cropImg : string
 
+    get cropImg(): string {
+        return this._cropImg;
+    }
+    set cropImg(value: string) {
+        this._cropImg = value;
+    }
 }
