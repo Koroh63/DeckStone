@@ -47,22 +47,32 @@ export const getAllCards = () => {
       const options = {
         method: 'GET',
         headers: {
-          'X-RapidAPI-Key': '7f2463868fmsh25504614975f2f4p1328d1jsne514834ad08c',
-          'X-RapidAPI-Host': 'omgvamp-hearthstone-v1.p.rapidapi.com'
+          'content-length':'9505',
+          'content-type':'application/json; charset=utf-8',
+          'etag':'W/"74bb-QMT8DIj6saBS1wT4u5WWcEmZAdw"'
         }
       };
-      const CardsPromise = await fetch('https://omgvamp-hearthstone-v1.p.rapidapi.com/cards', options);
-      console.log("FETCH")
-      console.log(CardsPromise)
+      const CardsPromise = await fetch('https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EURTWhjBC2SRb4Ez42BT1kx8R2NcJc07kL', options);
+      //console.log("FETCH")
+      //console.log(CardsPromise)
 
       //Then use the json method to get json data from api/
       const CardsListJson = await CardsPromise.json();
-      console.log(CardsListJson)
+      
+      //console.log(CardsListJson['cards']) 
 
+      
       //@ts-ignore
-      const CardsList: Card[] = CardsListJson.map(elt => new Card(elt["cardId"], elt["name"], elt["cardSet"], elt["type"], elt["faction"], elt["rarity"], elt["cost"], elt["attack"], elt["health"],elt["text"], elt["flavor"], elt["artist"], elt["collectible"], elt["elite"], elt["race"], elt["img"], elt["imgGold"]));
-      console.log("TOTO")
-      console.log(CardsList)
+      const CardsList: Card[] = CardsListJson['cards'].map(elt => new Card(elt["id"] ? elt["id"] : 1,
+                                                                          elt["name"] ? elt["name"] : "",
+                                                                          elt["image"] ? elt["image"] : "",
+                                                                          elt["imageGold"] ? elt["imageGold"] : "",
+                                                                           )); //, elt["cardSet"], elt["type"], elt["faction"], elt["rarity"], elt["cost"], elt["attack"], elt["health"],elt["text"], elt["flavor"], elt["artist"], elt["collectible"], elt["elite"], elt["race"], elt["img"], elt["imgGold"]
+      //elt["cardId"] == null ? elt["cardId"] : ""
+      
+      //console.log("TOTO")
+      
+      //console.log(CardsList)
       //call the action 
       dispatch(setCardsList(CardsList));
       

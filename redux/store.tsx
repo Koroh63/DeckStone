@@ -10,6 +10,9 @@ const reducer = {
 const store = configureStore({
     // @ts-ignore
     reducer,
+
+    // @ts-ignore
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({serializableCheck : false}), //desactive le check de la serialization (primitif)
 },);
 
 export default store;

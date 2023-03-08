@@ -17,9 +17,15 @@ import { Image } from 'react-native';
 import { ImageURISource } from 'react-native';
 
 //@ts-ignore
-const Item = ({title}) => (
-    <View style={styles.item}>
-        <Text style={styles.title}>{title}</Text>
+const Item = ({url}) => (
+    // <View style={styles.item}>
+    //     <Text style={styles.title}>{title}</Text>
+    // </View>
+    <View>
+        <Image 
+        source={{uri:url}}
+        style={{flex:1, minHeight:250, minWidth:180}}/>
+
     </View>
 );
 
@@ -63,14 +69,24 @@ export default function ListScreen({navigation}){
             renderItem={({item}) => <Item title={item.name} />}
             keyExtractor={item => item.id}/> */}
 
-            <FlatList data={nList} renderItem={({item}) =>
+            <FlatList 
+                numColumns={2}
+                data={nList} 
+                renderItem={({item}) =>
                     
                     //<TouchableHighlight onPress={() => navigation.navigate("CardsDetails", {"card": item})}> //* mettre la page de detail ici, renvoi a home pour l'instant
-                    // <TouchableHighlight onPress={() => navigation.navigate("HomeScreen")}>
-                    //     <Item title={item.name}/>
-                    // </TouchableHighlight>
-                    <Text>{item.name}</Text>
-                } keyExtractor={(item: Card) => item.name}/>
+                    <TouchableHighlight onPress={() => navigation.navigate("ListFav")}>
+                        <Item url={item.img}/>
+                    </TouchableHighlight>
+                    
+                    // //<Text>{item.name}</Text>
+                    // // <View>
+                    // //     <Image 
+                    // //     source={{uri:item.img}}
+                    // //     style={{flex:1, minHeight:250, minWidth:180}}/>
+
+                    // // </View>
+                } keyExtractor={(item: Card) => item.id.toString()}/>
         </View>
 
         
