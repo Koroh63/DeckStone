@@ -1,42 +1,92 @@
 
-import { StyleSheet, Text, View, Button, ImageComponent } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableHighlight } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FlatList } from 'react-native-gesture-handler';
+import {useDispatch, useSelector} from 'react-redux';
+
+import { ThunkAction } from 'redux-thunk';
+
+
+//? possiblement à supprimer
+import { getAllCards } from "../redux/actions/actionSelection"
+
 import { StubLib } from '../data/stub';
 import { Card } from '../models/Card';
 import { Image } from 'react-native';
 import { ImageURISource } from 'react-native';
 
 //@ts-ignore
-const Item = ({title}) => (
-    <View style={styles.item}>
-        <Text style={styles.title}>{title}</Text>
+const Item = ({url}) => (
+    // <View style={styles.item}>
+    //     <Text style={styles.title}>{title}</Text>
+    // </View>
+    <View>
+        <Image 
+        source={{uri:url}}
+        style={{flex:1, minHeight:250, minWidth:180}}/>
+
     </View>
 );
 
-export default function Main() {
+//@ts-ignore
+export default function ListScreen({navigation}){
     const [count, setCount] = useState(0);
-    const {getCards} = new StubLib();
-    const list: Card[] = getCards();
-    const req =  fetch('https://omgvamp-hearthstone-v1.p.rapidapi.com/cards')
+
+
+
+    //  // Initialize the binding content with the application initial state
+
+    //@ts-ignore
+    const nList = useSelector(state => state.appReducer.cards);
+    // Create a const that will hold the react-redux events dispatcher
+    const dispatch = useDispatch();
     
+    // Let's define a hook that will be used to update the rendered state after the return will be called
+    // You cannot perform side-effects outside of a useEffect hook
+
+    useEffect(() => {
+        console.log("USEEFFECT")
+        const loadCards = async () => {
+            //@ts-ignore
+            await dispatch(getAllCards());
+        };
+        loadCards();
+    }, [dispatch]);
+
+
+
+    //* Stub
+    // const {getCards} = new StubLib();
+    // const list: Card[] = getCards();
+    // const req =  fetch('https://omgvamp-hearthstone-v1.p.rapidapi.com/cards')
+
+    //https://us.api.blizzard.com/hearthstone/cards/678?locale=en_US
 
     return (
         <View style={styles.container}>
+            {/* <FlatList data={nList}         
+            renderItem={({item}) => <Item title={item.name} />}
+            keyExtractor={item => item.id}/> */}
+
             <FlatList 
-                numColumns = {2}  
-                data={list}       
-                renderItem={({item}) => (
-                    <View>
-                        <Image
-                            source={{ uri: item.img }}
-                        style={{flex: 1, minHeight: 250,minWidth: 180}}
-                    />
-                </View>
-                )}
-                keyExtractor={item => item.id}
-            />
+                numColumns={2}
+                data={nList} 
+                renderItem={({item}) =>
+                    
+                    //<TouchableHighlight onPress={() => navigation.navigate("CardsDetails", {"card": item})}> //* mettre la page de detail ici, renvoi a home pour l'instant
+                    <TouchableHighlight onPress={() => navigation.navigate("ListFav")}>
+                        <Item url={item.img}/>
+                    </TouchableHighlight>
+                    
+                    // //<Text>{item.name}</Text>
+                    // // <View>
+                    // //     <Image 
+                    // //     source={{uri:item.img}}
+                    // //     style={{flex:1, minHeight:250, minWidth:180}}/>
+
+                    // // </View>
+                } keyExtractor={(item: Card) => item.id.toString()}/>
         </View>
 
         
