@@ -24,8 +24,6 @@ import {
 import { Provider } from 'react-redux';
 
 export default function App() {
-    //safearea
-    //mettre le navigateur ayant le princ
 
   return (
     <Provider store={store}>

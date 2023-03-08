@@ -32,13 +32,11 @@ const Item = ({url}) => (
 //@ts-ignore
 export default function ListScreen({navigation}){
     const [count, setCount] = useState(0);
-
-    // get the current theme
+    
     //@ts-ignore
     const theme = useSelector(state => state.theme);
     //@ts-ignore
     const nList = useSelector(state => state.appReducer.cards);
-    
     //@ts-ignore
     const mode = useSelector(state => state.appReducer.mode);
 
@@ -56,23 +54,12 @@ export default function ListScreen({navigation}){
         loadCards();
     }, [dispatch]);
 
-    //* Themes *//
-    
-    // define a component mode state
-
-    //const [mode, setMode] = useState(theme.mode);
-
     // Handle changing the theme mode
 
     //@ts-ignore
     const handleThemeChange = (mode) => { 
         dispatch(switchMode(mode === 'light' ? 'dark' : 'light'));
     }
-
-    // Update the app Incase the theme mode changes
-    // useEffect(() => { 
-    //     setMode(theme.mode);
-    // }, [theme]);
 
 
 

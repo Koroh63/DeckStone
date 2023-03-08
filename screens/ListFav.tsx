@@ -3,7 +3,6 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from "react";
 
 import {setFavList } from '../redux/actions/action_setFavList';
-
 //redux
 import {useDispatch, useSelector} from 'react-redux';
 import {useEffect} from 'react';
@@ -72,9 +71,10 @@ const Item = ({title}) => (
 
 export default function Main(){
     const [count, setCount] = useState(0);
-    
+    //@ts-ignore
+    const mode = useSelector(state => state.appReducer.mode);
     return (
-        <View style={styles.container}>
+        <View style={mode === 'light' ? styles.container_light : styles.container_dark}>
             <Text>Maman, J4AI UNE LISTE DE FAVORIS ! !</Text>
             <StatusBar style="auto" />
             <Text>{count}</Text>
@@ -106,5 +106,17 @@ const styles = StyleSheet.create({
     },
     title: {
         fontStyle: "italic",
+    },
+    container_light: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    container_dark: {
+        flex: 1,
+        backgroundColor: '#121212',
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 });
