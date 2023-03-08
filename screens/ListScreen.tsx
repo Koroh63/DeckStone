@@ -1,33 +1,36 @@
-
-import { StyleSheet, Text, View, Button, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableHighlight, ImageBackground } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from "react";
 import { FlatList } from 'react-native-gesture-handler';
 import {useDispatch, useSelector} from 'react-redux';
-
+import { FontAwesome } from '@expo/vector-icons';
 import { ThunkAction } from 'redux-thunk';
 
 
 //? possiblement à supprimer
 import { getAllCards } from "../redux/actions/actionSelection"
-
-import { StubLib } from '../data/stub';
 import { Card } from '../models/Card';
 import { Image } from 'react-native';
 import { ImageURISource } from 'react-native';
 
 //@ts-ignore
-const Item = ({url}) => (
-    // <View style={styles.item}>
-    //     <Text style={styles.title}>{title}</Text>
-    // </View>
-    <View>
-        <Image 
-        source={{uri:url}}
-        style={{flex:1, minHeight:250, minWidth:180}}/>
+const Item = ({url}) => { // a mettre dans components et definir une props pour passer le param
+    
+    const HandleAddFav = () => {
+        console.log('addfavorite');
+    }
+    return(
 
+        <View style={styles.item}>
+        <ImageBackground  source={{uri:url}} style={{flex:1, minHeight:250, minWidth:180}}>
+             <TouchableHighlight style={styles.favoriteButton} onPress={HandleAddFav}>
+                <FontAwesome name="heart-o" size={50} color="#fff" />
+            </TouchableHighlight>
+        </ImageBackground>
+        
     </View>
-);
+    );
+}
 
 //@ts-ignore
 export default function ListScreen({navigation}){
@@ -114,10 +117,15 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     item: {
-        borderRadius : 15,
-        backgroundColor: '#efefef',
-        padding: 20,
-        margin : 10,
+        
+    },
+    favoriteButton: {
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        backgroundColor: 'transparent',
+        borderRadius: 50,
+        padding: 10,
     },
     title: {
         fontStyle: "italic",

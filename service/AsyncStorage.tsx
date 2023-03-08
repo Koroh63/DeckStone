@@ -1,6 +1,7 @@
 import { Card } from "../models/Card";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+
 export class AsyncStorageCard{
 
     static AddCardStorage(name : string, cards : Card[]){
