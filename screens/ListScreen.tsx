@@ -9,7 +9,7 @@ import { ThunkAction } from 'redux-thunk';
 
 
 //? possiblement à supprimer
-import { Card, getAllCards } from "../redux/actions/getAllCards"
+import { getAllCards } from "../redux/actions/actionSelection"
 
 import { StubLib } from '../data/stub';
 import { Card } from '../models/Card';
@@ -29,41 +29,46 @@ export default function ListScreen({navigation}){
 
     //  // Initialize the binding content with the application initial state
 
-    // //@ts-ignore
+    //@ts-ignore
+    const nList = useSelector(state => state.appReducer.cards);
+    // Create a const that will hold the react-redux events dispatcher
+    const dispatch = useDispatch();
     
-    // const nList = useSelector(state => state.cards);
-    // // Create a const that will hold the react-redux events dispatcher
-    // const dispatch = useDispatch();
-    
-    // // Let's define a hook that will be used to update the rendered state after the return will be called
-    // // You cannot perform side-effects outside of a useEffect hook
+    // Let's define a hook that will be used to update the rendered state after the return will be called
+    // You cannot perform side-effects outside of a useEffect hook
 
-    // useEffect(() => {
-    //     const loadCards = async () => {
-    //         await dispatch(getAllCards());
-    //     };
-    //     loadCards();
-    // }, [dispatch]);
+    useEffect(() => {
+        console.log("USEEFFECT")
+        const loadCards = async () => {
+            //@ts-ignore
+            await dispatch(getAllCards());
+        };
+        loadCards();
+    }, [dispatch]);
 
-    const {getCards} = new StubLib();
-    const list: Card[] = getCards();
-    const req =  fetch('https://omgvamp-hearthstone-v1.p.rapidapi.com/cards')
-    
+
+
+    //* Stub
+    // const {getCards} = new StubLib();
+    // const list: Card[] = getCards();
+    // const req =  fetch('https://omgvamp-hearthstone-v1.p.rapidapi.com/cards')
+
+    //https://us.api.blizzard.com/hearthstone/cards/678?locale=en_US
 
     return (
         <View style={styles.container}>
-            <Text>{}</Text>
-            <FlatList data={list}         
+            {/* <FlatList data={nList}         
             renderItem={({item}) => <Item title={item.name} />}
-            keyExtractor={item => item.id}/>
+            keyExtractor={item => item.id}/> */}
 
-            {/* <FlatList data={nList} renderItem={({item}) =>
+            <FlatList data={nList} renderItem={({item}) =>
                     
                     //<TouchableHighlight onPress={() => navigation.navigate("CardsDetails", {"card": item})}> //* mettre la page de detail ici, renvoi a home pour l'instant
-                    <TouchableHighlight onPress={() => navigation.navigate("HomeScreen")}>
-                        <Item title={item.name}/>
-                    </TouchableHighlight>
-                } keyExtractor={(item: Card) => item.name}/> */}
+                    // <TouchableHighlight onPress={() => navigation.navigate("HomeScreen")}>
+                    //     <Item title={item.name}/>
+                    // </TouchableHighlight>
+                    <Text>{item.name}</Text>
+                } keyExtractor={(item: Card) => item.name}/>
         </View>
 
         

@@ -1,8 +1,10 @@
 import {FETCH_DATA, ADD_FAVORITE_DATA} from '../constants'
 
 const initialState = {
-    cards: ["C_ace", "C_K", "C_Q", "C_J"],
-    favoriteCards: [ "C_ace", "C_K"],
+    cards: [],
+    favoriteCards: [],
+    // cards: ["C_ace", "C_K", "C_Q", "C_J"],
+    // favoriteCards: [ "C_ace", "C_K"],
 }
 
 
