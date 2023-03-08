@@ -10,6 +10,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import {useDispatch, useSelector} from 'react-redux';
 
+import store from './redux/store';
+
 // Import your application store
 //import store from "./redux/store";
 
@@ -21,16 +23,16 @@ import {
 
 import { Provider } from 'react-redux';
 
-
-
 export default function App() {
     //safearea
     //mettre le navigateur ayant le princ
 
   return (
-    <SafeAreaProvider>
-      <Navigation/>
-    </SafeAreaProvider>
+    <Provider store={store}>
+      <SafeAreaProvider>
+        <Navigation/>
+      </SafeAreaProvider>
+    </Provider>
   );
 }
 

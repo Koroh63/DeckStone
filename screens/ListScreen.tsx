@@ -1,7 +1,11 @@
 
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableHighlight } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { FlatList } from 'react-native-gesture-handler';
+import {useDispatch, useSelector} from 'react-redux';
+
+import { ThunkAction } from 'redux-thunk';
 
 
 //? possiblement à supprimer
@@ -82,32 +86,32 @@ export default function ListScreen({navigation}){
 
     return (
         <View style={styles.container}>
-            {/* <FlatList data={nList}         
-            renderItem={({item}) => <Item title={item.name} />}
-            keyExtractor={item => item.id}/> */}
-            <View style={styles.container}>
-                <Button onPress={()=> theme.mode === 'light' ? 'dark' : 'light'} title="Switch Theme"/>
-            </View>
-            <FlatList 
-                numColumns={2}
-                data={nList} 
-                renderItem={({item}) =>
-                    
-                    //<TouchableHighlight onPress={() => navigation.navigate("CardsDetails", {"card": item})}> //* mettre la page de detail ici, renvoi a home pour l'instant
-                    <TouchableHighlight onPress={() => navigation.navigate("ListFav")}>
-                        <Item url={item.img}/>
-                    </TouchableHighlight>
-                    
-                    // //<Text>{item.name}</Text>
-                    // // <View>
-                    // //     <Image 
-                    // //     source={{uri:item.img}}
-                    // //     style={{flex:1, minHeight:250, minWidth:180}}/>
+        {/* <FlatList data={nList}         
+        renderItem={({item}) => <Item title={item.name} />}
+        keyExtractor={item => item.id}/> */}
 
-                    // // </View>
-                } keyExtractor={(item: Card) => item.id.toString()}/>
-        </View>
-    );
+        <FlatList 
+            numColumns={2}
+            data={nList} 
+            renderItem={({item}) =>
+                
+                //<TouchableHighlight onPress={() => navigation.navigate("CardsDetails", {"card": item})}> //* mettre la page de detail ici, renvoi a home pour l'instant
+                <TouchableHighlight onPress={() => navigation.navigate("ListFav")}>
+                    <Item url={item.img}/>
+                </TouchableHighlight>
+                
+                // //<Text>{item.name}</Text>
+                // // <View>
+                // //     <Image 
+                // //     source={{uri:item.img}}
+                // //     style={{flex:1, minHeight:250, minWidth:180}}/>
+
+                // // </View>
+            } keyExtractor={(item: Card) => item.id.toString()}/>
+    </View>
+
+    
+);
 }
 
 
@@ -115,11 +119,10 @@ export default function ListScreen({navigation}){
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#ffffff',
+        backgroundColor: '#ac9585',
         alignItems: 'center',
-        justifyContent: 'center',
-        borderWidth: 5,
-        borderColor : "#ff00ff",
+        justifyContent: 'space-evenly',
+        
     },
     border: {
         flex: 1,
