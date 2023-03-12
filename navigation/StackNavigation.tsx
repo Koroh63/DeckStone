@@ -13,7 +13,11 @@ export default function StackNavigation() {
     return (
         //<NavigationContainer>
             <Stack.Navigator initialRouteName="Home">
-                <Stack.Screen name="Home" component={HomeScreen}/>
+                <Stack.Screen
+                    name="Home"
+                    component={HomeScreen}
+                    options={{ headerShown: false }} // enlever l'header pour cet écran
+                />
                 <Stack.Screen name="ListScreen" component={ListScreen}/>
                 <Stack.Screen name="ListFav" component={ListFav}/>
             </Stack.Navigator>

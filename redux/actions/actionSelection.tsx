@@ -52,15 +52,19 @@ export const getAllCards = () => {
           'etag':'W/"74bb-QMT8DIj6saBS1wT4u5WWcEmZAdw"'
         }
       };
-      const CardsPromise = await fetch('https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EURTWhjBC2SRb4Ez42BT1kx8R2NcJc07kL', options);
+
+      console.log("API")
+      //const CardsPromise = await fetch('https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EURTWhjBC2SRb4Ez42BT1kx8R2NcJc07kL', options);
+      const CardsPromise = await fetch('https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EUGIkMrnzNyG68ac33y5Tpn6MUtraN3QiV', options);
       //console.log("FETCH")
       //console.log(CardsPromise)
 
-      //Then use the json method to get json data from api/
-      const CardsListJson = await CardsPromise.json();
       
+      //Then use the json method to get json data from api/
+      const CardsListJson = await CardsPromise.json(); //! ??????
+      console.log("jsoncardlist")
       //console.log(CardsListJson['cards']) 
-
+      
       
       //@ts-ignore
       const CardsList: Card[] = CardsListJson['cards'].map(elt => new Card(elt["id"] ? elt["id"] : 1,
@@ -72,7 +76,7 @@ export const getAllCards = () => {
       
       //console.log("TOTO")
       
-      //console.log(CardsList)
+      console.log("CardsList")
       //call the action 
       
       dispatch(setCardsList(CardsList));

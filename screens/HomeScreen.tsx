@@ -94,7 +94,7 @@ export default function HomeScreen({navigation}) {
     },
     container_dark: {
         flex: 1,
-        backgroundColor: '#121212',
+        backgroundColor: '#3e3e42',
         alignItems: 'center',
         justifyContent: 'center',
     },
