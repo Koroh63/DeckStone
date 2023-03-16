@@ -46,13 +46,22 @@ export const getAllCards = () => {
       //Have it first fetch data from our starwars url.
       const options = {
         method: 'GET',
+        // headers: {
+        //   'content-length':'9505',
+        //   'content-type':'application/json; charset=utf-8',
+        //   'etag':'W/"74bb-QMT8DIj6saBS1wT4u5WWcEmZAdw"'
+        // }
+
+        //! Actualisation de l'API (16/03) :
         headers: {
-          'content-length':'9505',
-          'content-type':'application/json; charset=utf-8',
-          'etag':'W/"74bb-QMT8DIj6saBS1wT4u5WWcEmZAdw"'
+          'content-length': '9508',
+          'content-type': 'application/json; charset=utf-8',
+          'etag': 'W/"74bb-d4gMlMNks7UGES3Jmn6wzUTXaLI"'
         }
       };
-      const CardsPromise = await fetch('https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EURTWhjBC2SRb4Ez42BT1kx8R2NcJc07kL', options);
+      //! Actualisation de l'API (16/03) :
+      const CardsPromise = await fetch('https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EU1AbKy9Q7sOUjQYC5AFF1O1JPuoAgCNxk', options);
+      //const CardsPromise = await fetch('https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EURTWhjBC2SRb4Ez42BT1kx8R2NcJc07kL', options);
       //console.log("FETCH")
       //console.log(CardsPromise)
 
