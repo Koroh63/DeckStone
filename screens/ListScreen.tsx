@@ -17,22 +17,11 @@ import { Image } from 'react-native';
 import { ImageURISource } from 'react-native';
 
 //* Icons
+//  import { BiSearchAlt } from 'react-icons';
 
-//import { BiSearchAlt } from 'react-icons';
+//* Components
+import {ListItemComponent} from '../components/ListItemComponent'
 
-
-//@ts-ignore
-const Item = ({url}) => (
-    // <View style={styles.item}>
-    //     <Text style={styles.title}>{title}</Text>
-    // </View>
-    <View>
-        <Image 
-        source={{uri:url}}
-        style={{flex:1, minHeight:250, minWidth:180}}/>
-
-    </View>
-);
 
 //@ts-ignore
 export default function ListScreen({navigation}){
@@ -89,7 +78,7 @@ export default function ListScreen({navigation}){
                 data={filteredList} 
                 renderItem={({item}) =>
                     <TouchableHighlight onPress={() => navigation.navigate("ListFav")}>
-                        <Item url={item.img}/>
+                        <ListItemComponent url={item.img}/>
                     </TouchableHighlight>
                 } 
                 keyExtractor={(item: Card) => item.id.toString()}
