@@ -1,4 +1,5 @@
-import { StyleSheet, Text, View, Button, TouchableHighlight, ImageBackground } from 'react-native';
+
+import { StyleSheet, Text, View, Button, TouchableHighlight, TextInput } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from "react";
 import { FlatList } from 'react-native-gesture-handler';
@@ -12,6 +13,11 @@ import { getAllCards } from "../redux/actions/actionSelection"
 import { Card } from '../models/Card';
 import { Image } from 'react-native';
 import { ImageURISource } from 'react-native';
+
+//* Icons
+
+//import { BiSearchAlt } from 'react-icons';
+
 
 //@ts-ignore
 const Item = ({url}) => { // a mettre dans components et definir une props pour passer le param
@@ -66,30 +72,32 @@ export default function ListScreen({navigation}){
 
     //https://us.api.blizzard.com/hearthstone/cards/678?locale=en_US
 
+    //* Search : 
+    const [searchValue, setSearchValue] = useState('');
+
+    //@ts-ignore
+    const filteredList = nList.filter(item => item.name.toLowerCase().includes(searchValue.toLowerCase()));
+
     return (
         <View style={styles.container}>
-            {/* <FlatList data={nList}         
-            renderItem={({item}) => <Item title={item.name} />}
-            keyExtractor={item => item.id}/> */}
+
+            <TextInput
+                style={styles.textInput}
+                value={searchValue}
+                onChangeText={text => setSearchValue(text)}
+                placeholder="Rechercher une carte..."
+            />
 
             <FlatList 
                 numColumns={2}
-                data={nList} 
+                data={filteredList} 
                 renderItem={({item}) =>
-                    
-                    //<TouchableHighlight onPress={() => navigation.navigate("CardsDetails", {"card": item})}> //* mettre la page de detail ici, renvoi a home pour l'instant
                     <TouchableHighlight onPress={() => navigation.navigate("ListFav")}>
                         <Item url={item.img}/>
                     </TouchableHighlight>
-                    
-                    // //<Text>{item.name}</Text>
-                    // // <View>
-                    // //     <Image 
-                    // //     source={{uri:item.img}}
-                    // //     style={{flex:1, minHeight:250, minWidth:180}}/>
-
-                    // // </View>
-                } keyExtractor={(item: Card) => item.id.toString()}/>
+                } 
+                keyExtractor={(item: Card) => item.id.toString()}
+            />
         </View>
 
         
@@ -129,5 +137,14 @@ const styles = StyleSheet.create({
     },
     title: {
         fontStyle: "italic",
+    },
+    textInput: {
+        padding: 15,
+        margin: 5,
+        width:200,
+        backgroundColor: '#ffffff',
+        borderRadius : 15,
+        shadowColor: 'grey',
+        textAlign:'center'
     }
 });
