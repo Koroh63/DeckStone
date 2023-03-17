@@ -56,8 +56,9 @@ export const getAllCards = () => {
         headers: {
           'content-length': '9508',
           'content-type': 'application/json; charset=utf-8',
-          'etag': 'W/"74bb-d4gMlMNks7UGES3Jmn6wzUTXaLI"'
+          'etag': 'W/"74bb-d4gMlMNks7UGES3Jmn6wzUTXaLI"',
         }
+        //'pageSize':'100'
       };
       //! Actualisation de l'API (16/03) :
       const CardsPromise = await fetch('https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EU1AbKy9Q7sOUjQYC5AFF1O1JPuoAgCNxk', options);

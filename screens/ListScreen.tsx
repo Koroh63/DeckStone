@@ -15,8 +15,10 @@ import { Image } from 'react-native';
 import { ImageURISource } from 'react-native';
 
 //* Icons
+//  import { BiSearchAlt } from 'react-icons';
 
-//import { BiSearchAlt } from 'react-icons';
+//* Components
+import {ListItemComponent} from '../components/ListItemComponent'
 
 
 //@ts-ignore
