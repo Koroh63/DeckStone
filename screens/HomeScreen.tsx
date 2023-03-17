@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NavigationContainer } from '@react-navigation/native';
+import { useTheme } from 'react-native-paper';
 import StackNavigation from '../navigation/StackNavigation' 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import {useDispatch, useSelector} from 'react-redux';
@@ -15,6 +16,9 @@ export default function HomeScreen({navigation}) {
     //@ts-ignore
     const mode = useSelector(state => state.appReducer.mode);
 
+    const { colors } = useTheme();
+
+    
     return (
         <View style={mode === 'light' ? styles.container_light : styles.container_dark}>
             <View style={styles.centered}>

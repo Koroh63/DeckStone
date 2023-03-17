@@ -2,7 +2,7 @@
 import { StyleSheet, Text, View, Button } from 'react-native';
 import React, { useState } from "react";
 
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import HomeScreen from '../screens/HomeScreen';
@@ -11,6 +11,7 @@ import ListFav from '../screens/ListFav';
 
 import TabBarIcon from '../components/TabBarIcon';
 import StackNavigation from './StackNavigation';
+
 
 import { Ionicons } from '@expo/vector-icons';
 import { HeaderButton, HeaderButtons, Item } from 'react-navigation-header-buttons';
@@ -30,9 +31,17 @@ export default function Navigation() {
     const mode = useSelector(state => state.appReducer.mode);
 
     const dispatch = useDispatch();
+
+    const { colors } = useTheme();
     return (
         <NavigationContainer>
-            <BottomTabNavigator.Navigator initialRouteName="Home">
+            <BottomTabNavigator.Navigator 
+            initialRouteName="Home"
+            screenOptions={({ route }) => ({
+                tabBarActiveTintColor: 'blue',
+                tabBarInactiveTintColor: 'gray',
+            })}
+            >
                 <BottomTabNavigator.Screen name="List" component={ListScreen}
                                             options={{
                                                 title: 'List',
