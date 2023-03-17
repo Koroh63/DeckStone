@@ -1,5 +1,5 @@
 
-import { StyleSheet, Text, View, Button, TouchableHighlight, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableHighlight, TextInput, ImageBackground } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from "react";
 import { FlatList } from 'react-native-gesture-handler';
@@ -20,16 +20,16 @@ import { ImageURISource } from 'react-native';
 
 
 //@ts-ignore
-const Item = ({url}) => { // a mettre dans components et definir une props pour passer le param
+const Item = ({url,item}) => { // a mettre dans components et definir une props pour passer le param
     
     const HandleAddFav = () => {
-        console.log('addfavorite');
+        item.fav = !item.fav
     }
     return(
 
         <View style={styles.item}>
         <ImageBackground  source={{uri:url}} style={{flex:1, minHeight:250, minWidth:180}}>
-             <TouchableHighlight style={styles.favoriteButton} onPress={HandleAddFav}>
+             <TouchableHighlight style={item.fav?styles.favoriteButtonFav:styles.favoriteButtonNonFav} onPress={HandleAddFav}>
                 <FontAwesome name="heart-o" size={50} color="#fff" />
             </TouchableHighlight>
         </ImageBackground>
@@ -45,7 +45,6 @@ export default function ListScreen({navigation}){
 
 
     //  // Initialize the binding content with the application initial state
-
     //@ts-ignore
     const nList = useSelector(state => state.appReducer.cards);
     // Create a const that will hold the react-redux events dispatcher
@@ -65,9 +64,7 @@ export default function ListScreen({navigation}){
 
 
 
-    //* Stub
-    // const {getCards} = new StubLib();
-    // const list: Card[] = getCards();
+    
     // const req =  fetch('https://omgvamp-hearthstone-v1.p.rapidapi.com/cards')
 
     //https://us.api.blizzard.com/hearthstone/cards/678?locale=en_US
@@ -93,7 +90,7 @@ export default function ListScreen({navigation}){
                 data={filteredList} 
                 renderItem={({item}) =>
                     <TouchableHighlight onPress={() => navigation.navigate("ListFav")}>
-                        <Item url={item.img}/>
+                        <Item url={item.img} item={item}/>
                     </TouchableHighlight>
                 } 
                 keyExtractor={(item: Card) => item.id.toString()}
@@ -127,11 +124,19 @@ const styles = StyleSheet.create({
     item: {
         
     },
-    favoriteButton: {
+    favoriteButtonNonFav: {
         position: 'absolute',
         top: 10,
         right: 10,
-        backgroundColor: 'transparent',
+        backgroundColor: 'red',
+        borderRadius: 50,
+        padding: 10,
+    },
+    favoriteButtonFav: {
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        backgroundColor: 'red',
         borderRadius: 50,
         padding: 10,
     },

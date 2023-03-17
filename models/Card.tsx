@@ -5,7 +5,7 @@ import {Classe} from "./Classe";
 
 export class Card {
 
-    constructor(id: number,name :string, img : string, imgGold : string){//,set : CardSet,type : Type,clas : Classe,rarity : string,cost : number,attack : number, health : number, desc : string,flavor : string,artist : string,collectible : boolean,elite : boolean,race : string,  cropImg :string) {
+    constructor(id: number,name :string, img : string, imgGold : string,fav : boolean = true){//,set : CardSet,type : Type,clas : Classe,rarity : string,cost : number,attack : number, health : number, desc : string,flavor : string,artist : string,collectible : boolean,elite : boolean,race : string,  cropImg :string ) {
         this._id=id
         this._name=name
         //this._set=set
@@ -22,6 +22,7 @@ export class Card {
         this._img = img
         this._imgGold = imgGold
         // this._cropImg = cropImg
+        this._fav = fav
 
     }
 
@@ -155,4 +156,12 @@ export class Card {
     // set cropImg(value: string) {
     //     this._cropImg = value;
     // }
+
+    private _fav : boolean
+        get fav(): boolean{
+            return this._fav;
+        }
+        set fav(value : boolean){
+            this._fav = value;
+        }
 }
