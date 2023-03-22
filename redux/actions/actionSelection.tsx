@@ -55,7 +55,8 @@ export const getAllCards = () => {
 
       console.log("API")
       //const CardsPromise = await fetch('https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EURTWhjBC2SRb4Ez42BT1kx8R2NcJc07kL', options);
-      const CardsPromise = await fetch('https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EUGIkMrnzNyG68ac33y5Tpn6MUtraN3QiV', options);
+      //const CardsPromise = await fetch('https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EUGIkMrnzNyG68ac33y5Tpn6MUtraN3QiV', options);
+      const CardsPromise = await fetch('https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EUZvGOfXsMKYrjqLJp5mE7IJlhQuELMiPk', options);
       //console.log("FETCH")
       //console.log(CardsPromise)
 

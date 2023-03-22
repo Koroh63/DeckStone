@@ -1,8 +1,8 @@
     import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import {useColorScheme, StyleSheet, Text, View, Button } from 'react-native';
 import React, { useState } from "react";
 
-import { NavigationContainer, useTheme } from '@react-navigation/native';
+import { NavigationContainer, useTheme, DefaultTheme} from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import HomeScreen from '../screens/HomeScreen';
@@ -24,6 +24,8 @@ function fHeaderButton(props) {
     return <HeaderButton {...props} IconComponent={Ionicons} iconSize={23} color="black" />;
 }
 
+
+
 export default function Navigation() {
     const BottomTabNavigator = createBottomTabNavigator();
 
@@ -32,8 +34,54 @@ export default function Navigation() {
 
     const dispatch = useDispatch();
 
-    const { colors } = useTheme();
+        //* themes
+    //const { colors } = useTheme();
+
+    //const scheme = useColorScheme();
+
+
+
+// const defaultTheme = {
+//     ...DefaultTheme,
+//     colors: {
+//         ...DefaultTheme.colors,
+//         primary: 'blue',
+//         accent: 'yellow',
+//         background: 'white',
+//         text: 'black',
+//     },
+// };
+
+// const darkTheme = {
+//     ...DefaultTheme,
+//     dark: true,
+//     colors: {
+//         ...DefaultTheme.colors,
+//         primary: '#BB86FC',
+//         accent: '#03DAC6',
+//         background: '#121212',
+//         surface: '#121212',
+//         text: '#FFFFFF',
+//         disabled: '#9E9E9E',
+//         placeholder: '#9E9E9E',
+//         backdrop: '#00000070',
+//     },
+// };
+
+// const MyTheme = {
+//     dark: false,
+//     colors: {
+//         primary: 'rgb(255, 45, 85)',
+//         background: 'rgb(242, 242, 242)',
+//         card: 'rgb(255, 255, 255)',
+//         text: 'rgb(28, 28, 30)',
+//         border: 'rgb(199, 199, 204)',
+//         notification: 'rgb(255, 69, 58)',
+//     },
+// };
+
     return (
+        // <NavigationContainer theme={scheme === 'dark' ? darkTheme : DefaultTheme}>
         <NavigationContainer>
             <BottomTabNavigator.Navigator 
             initialRouteName="Home"
