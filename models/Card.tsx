@@ -5,18 +5,18 @@ import {Classe} from "./Classe";
 
 export class Card {
 
-    constructor(id: number,name :string, img : string, imgGold : string){//,set : CardSet,type : Type,clas : Classe,rarity : string,cost : number,attack : number, health : number, desc : string,flavor : string,artist : string,collectible : boolean,elite : boolean,race : string,  cropImg :string) {
+    constructor(id: number,name :string,health : number, attack : number,  manaCost : number, flavorText : string, img : string, imgGold : string){//,set : CardSet,type : Type,clas : Classe,rarity : string,, desc : string,flavor : string,artist : string,collectible : boolean,elite : boolean,race : string,  cropImg :string) {
         this._id=id
         this._name=name
         //this._set=set
         // this._type=type
         // this._class=clas
         // this._rarity=rarity
-        // this._cost=cost
-        // this._attack = attack
-        // this._health = health
+        this._manaCost=manaCost
+        this._attack = attack
+        this._health = health
         // this._desc = desc
-        // this._flavor = flavor
+        this._flavorText = flavorText
         // this._artist = artist
         // this._collectible = collectible
         this._img = img
@@ -76,29 +76,30 @@ export class Card {
     // set rarity(value: string) {
     //     this._rarity = value ;
     // }
-    // private _cost : number
 
-    //     get cost(): number {
-    //         return this._cost;
-    //     }
-    //     set cost(value: number) {
-    //         this._cost = value ;
-    //     }
+    private _manaCost : number
+        get manaCost(): number {
+            return this.manaCost;
+        }
+        set manaCost(value: number) {
+            this._manaCost = value ;
+        }
 
-    // private _attack : number
-    //     get attack(): number {
-    //         return this._attack;
-    //     }
-    //     set attack(value: number) {
-    //         this._attack = value ;
-    //     }
-    // private _health : number
-    //     get health(): number {
-    //         return this._health;
-    //     }
-    //     set health(value: number) {
-    //         this._health = value ;
-    //     }
+    private _attack : number
+        get attack(): number {
+            return this._attack;
+        }
+        set attack(value: number) {
+            this._attack = value ;
+        }
+    private _health : number
+        get health(): number {
+            return this._health;
+        }
+        set health(value: number) {
+            this._health = value ;
+        }
+
     // private _desc : string
     //     get desc(): string {
     //         return this._desc;
@@ -107,14 +108,13 @@ export class Card {
     //         this._desc = value ;
     //     }
 
-    // private _flavor : string
-
-    // get flavor(): string {
-    //     return this._flavor;
-    // }
-    // set flavor(value: string) {
-    //     this._flavor = value ;
-    // }
+    private _flavorText : string
+    get flavorText(): string {
+        return this._flavorText;
+    }
+    set flavor(value: string) {
+        this._flavorText = value ;
+    }
 
     // private _artist : string
     // get artist(): string {

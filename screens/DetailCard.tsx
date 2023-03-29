@@ -3,13 +3,22 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from "react";
 import { Card } from '../models/Card';
 
+import { Table, Row, Rows } from 'react-native-table-component';
+
 //* Components
 import {ListItemComponent} from '../components/ListItemComponent'
 
 //@ts-ignore
 export default function DetailMain({ route }){
-    
+
     const { card, other } = route.params;
+
+    const tableHead = ['Stat', 'Value'];
+    const tableData =  [
+        ['cost :', card.manaCost],
+        ['attack : ', card.attack],
+        ['health : ', card.health],
+    ]
 
     let pressed : Boolean = false
     const [titleText, setTitleText] = useState(card.name)
@@ -21,10 +30,16 @@ export default function DetailMain({ route }){
         <View style={styles.container}>
             <View style={styles.titleView}>
                 <Text style={styles.title} onPress={onPressTitle} >{titleText}</Text>
+                <Text style={styles.flavor}>{card.flavorText}</Text>
             </View>
             <View style={styles.item}>
                 <ListItemComponent url={card.img}/>
-            </View>            
+            </View>
+
+            <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
+                <Row data={tableHead} style={styles.head} textStyle={styles.text}/>
+                <Rows data={tableData} textStyle={styles.text}/>
+            </Table>        
         </View>
     );
 }
@@ -47,16 +62,21 @@ const styles = StyleSheet.create({
     },
     title: {
         fontStyle: "italic",
+        fontWeight: "bold",
         fontSize: 20,
+    },
+    flavor: {
+        fontStyle: "italic",
     },
     titleView: {
         flex: 1,
         justifyContent: 'center',
-        padding: 10,
+        paddingVertical: 0,
         backgroundColor: '#fff',
         borderRadius : 10,
         borderWidth: 10,
         borderColor: '#efefef',
-        maxHeight: 100,
-    }
+    },
+    head: { height: 40, backgroundColor: '#f1f8ff' },
+    text: { margin: 6 }
 });

@@ -76,8 +76,13 @@ export const getAllCards = () => {
       //@ts-ignore
       const CardsList: Card[] = CardsListJson['cards'].map(elt => new Card(elt["id"] ? elt["id"] : 1,
                                                                           elt["name"] ? elt["name"] : "",
+                                                                          elt["health"] ? elt["health"] : 0,
+                                                                          elt["attack"] ? elt["attack"] : 0,
+                                                                          elt["manaCost"] ? elt["manaCost"] : 0,
+                                                                          elt["flavorText"] ? elt["flavorText"] : "",
                                                                           elt["image"] ? elt["image"] : "",
                                                                           elt["imageGold"] ? elt["imageGold"] : "",
+                                                                          
                                                                            )); //, elt["cardSet"], elt["type"], elt["faction"], elt["rarity"], elt["cost"], elt["attack"], elt["health"],elt["text"], elt["flavor"], elt["artist"], elt["collectible"], elt["elite"], elt["race"], elt["img"], elt["imgGold"]
       //elt["cardId"] == null ? elt["cardId"] : ""
       
