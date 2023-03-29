@@ -11,6 +11,7 @@ import ListFav from '../screens/ListFav';
 
 import TabBarIcon from '../components/TabBarIcon';
 import StackNavigation from './StackNavigation';
+import DetailStackNav from './DetailStackNav';
 
 
 
@@ -20,7 +21,7 @@ export default function Navigation() {
     return (
         <NavigationContainer>
             <BottomTabNavigator.Navigator initialRouteName="Home">
-                <BottomTabNavigator.Screen name="List" component={ListScreen}
+                <BottomTabNavigator.Screen name="List" component={DetailStackNav} 
                                             options={{
                                                 title: 'List',
                                                 tabBarIcon: ({color}) => <TabBarIcon name="th-large" color={color}/>,

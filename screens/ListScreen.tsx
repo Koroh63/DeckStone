@@ -77,7 +77,10 @@ export default function ListScreen({navigation}){
                 numColumns={2}
                 data={filteredList} 
                 renderItem={({item}) =>
-                    <TouchableHighlight onPress={() => navigation.navigate("ListFav")}>
+                    // <TouchableHighlight onPress={() =>  ("DetailCard", {card :item})}>
+                    //     <ListItemComponent url={item.img}/>
+                    // </TouchableHighlight>
+                    <TouchableHighlight onPress={() => navigation.navigate("DetailCard", {card :item, other : 'anything'})}>
                         <ListItemComponent url={item.img}/>
                     </TouchableHighlight>
                 } 
