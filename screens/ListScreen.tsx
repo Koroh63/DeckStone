@@ -34,14 +34,14 @@ export default function ListScreen({navigation}){
     // Let's define a hook that will be used to update the rendered state after the return will be called
     // You cannot perform side-effects outside of a useEffect hook
 
-    useEffect(() => {
-        console.log("USEEFFECT")
-        const loadCards = async () => {
-            //@ts-ignore
-            await dispatch(getAllCards());
-        };
-        loadCards();
-    }, [dispatch]);
+    // useEffect(() => {
+    //     console.log("USEEFFECT")
+    //     const loadCards = async () => {
+    //         //@ts-ignore
+    //         await dispatch(getAllCards());
+    //     };
+    //     loadCards();
+    // }, [dispatch]);
 
 
     //* Search : 

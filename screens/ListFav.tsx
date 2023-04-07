@@ -28,7 +28,7 @@ export default function ListScreen({navigation}){
 
     //@ts-ignore
     var nList : Card[] = useSelector(state => state.appReducer.favoriteCards);
-    console.log(nList)
+    console.log(" favs : ",nList)
 
     const [searchValue, setSearchValue] = useState('');
 
@@ -53,7 +53,7 @@ export default function ListScreen({navigation}){
                         }} />
                     </TouchableHighlight>
                 }
-                keyExtractor={(item: Card) => item.id.toString()}
+                keyExtractor={(item: Card) => item.id}
             />
         </View>
 

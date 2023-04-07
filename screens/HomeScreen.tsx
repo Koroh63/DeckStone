@@ -4,11 +4,53 @@ import { useNavigation } from '@react-navigation/native';
 import { NavigationContainer } from '@react-navigation/native';
 import StackNavigation from '../navigation/StackNavigation' 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getAllCards } from "../redux/actions/actionSelection"
+import StorageHeart from '../service/AsyncStorage';
+import { setFavList } from '../redux/actions/action_setFavList';
+import { setList } from '../redux/actions/action_setFavs';
+import { Card } from '../models/Card';
+//import { setList } from '../redux/actions/action_setList';
 
-//import Button from 'react-bootstrap/Button';
 
-// @ts-ignore //(ta gueule pour l'erreur sur navigation)
+
+
+
+
+
+// @ts-ignore //
 export default function HomeScreen({navigation}) {
+
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        console.log("USEEFFECT")
+        const loadFavCards = async () => {
+            //@ts-ignore
+            //await dispatch(getAllCards());
+            const list = await StorageHeart.getItem("favoriteList")
+            console.log("async favs : ",list)
+            //@ts-ignore
+            dispatch(setList(list))
+            
+        };
+        loadFavCards();
+    }, [dispatch]);
+    useEffect(() => {
+        console.log("USEEFFECT")
+        const loadCards = async () => {
+            //@ts-ignore
+            await dispatch(getAllCards());
+        };
+        loadCards();
+    }, [dispatch]);
+
+
+
+
+
     return (
         <View style={styles.container}>
             <View style={styles.centered}>

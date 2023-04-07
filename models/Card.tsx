@@ -5,9 +5,9 @@ import {Classe} from "./Classe";
 
 export class Card {
 
-    constructor(id: number,name :string, img : string, imgGold : string,fav : boolean = true){//,set : CardSet,type : Type,clas : Classe,rarity : string,cost : number,attack : number, health : number, desc : string,flavor : string,artist : string,collectible : boolean,elite : boolean,race : string,  cropImg :string ) {
-        this._id=id
-        this._name=name
+    constructor(id: string,name :string, img : string, imgGold : string,fav : boolean = true){//,set : CardSet,type : Type,clas : Classe,rarity : string,cost : number,attack : number, health : number, desc : string,flavor : string,artist : string,collectible : boolean,elite : boolean,race : string,  cropImg :string ) {
+        this.id=id
+        this.name=name
         //this._set=set
         // this._type=type
         // this._class=clas
@@ -19,28 +19,19 @@ export class Card {
         // this._flavor = flavor
         // this._artist = artist
         // this._collectible = collectible
-        this._img = img
-        this._imgGold = imgGold
+        this.img = img
+        this.imgGold = imgGold
         // this._cropImg = cropImg
-        this._fav = fav
+        this.fav = fav
 
     }
 
     // ID //
 
-    private _id : number;
-        get id(): number {
-            return this._id
-        }
+    public id;
 
     // NAME //
-    private _name : string;
-        get name(): string {
-            return this._name;
-        }
-        set name(value: string) {
-            this._name = value;
-        }
+    public name;
 
 
     // private _set : CardSet;
@@ -132,22 +123,8 @@ export class Card {
     //     this._collectible = value;
     // }
 
-    private _img : string
-
-        get img(): string {
-            return this._img;
-        }
-        set img(value: string) {
-            this._img = value ;
-        }
-    private _imgGold : string
-
-        get imgGold(): string {
-            return this._imgGold;
-        }
-        set imgGold(value: string) {
-            this._imgGold = value ;
-        }
+    public img;
+    public imgGold;
     // private _cropImg : string
 
     // get cropImg(): string {
@@ -157,11 +134,5 @@ export class Card {
     //     this._cropImg = value;
     // }
 
-    private _fav : boolean
-        get fav(): boolean{
-            return this._fav;
-        }
-        set fav(value : boolean){
-            this._fav = value;
-        }
+    public fav;
 }
