@@ -1,17 +1,15 @@
 
-import { StyleSheet, Text, View, Button, TouchableHighlight, TextInput } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableHighlight, TextInput, ImageBackground, LogBox } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from "react";
 import { FlatList } from 'react-native-gesture-handler';
 import {useDispatch, useSelector} from 'react-redux';
-
+import { FontAwesome } from '@expo/vector-icons';
 import { ThunkAction } from 'redux-thunk';
 
 
 //? possiblement à supprimer
 import { getAllCards } from "../redux/actions/actionSelection"
-
-import { StubLib } from '../data/stub';
 import { Card } from '../models/Card';
 import { Image } from 'react-native';
 import { ImageURISource } from 'react-native';
@@ -20,42 +18,31 @@ import { ImageURISource } from 'react-native';
 //  import { BiSearchAlt } from 'react-icons';
 
 //* Components
-import {ListItemComponent} from '../components/ListItemComponent'
-
+import { setFavList } from '../redux/actions/action_setFavList';
+import Item from '../components/ListItemComponent';
 
 //@ts-ignore
 export default function ListScreen({navigation}){
     const [count, setCount] = useState(0);
 
-
-
     //  // Initialize the binding content with the application initial state
-
     //@ts-ignore
-    const nList = useSelector(state => state.appReducer.cards);
+    var nList = useSelector(state => state.appReducer.cards);
     // Create a const that will hold the react-redux events dispatcher
     const dispatch = useDispatch();
     
     // Let's define a hook that will be used to update the rendered state after the return will be called
     // You cannot perform side-effects outside of a useEffect hook
 
-    useEffect(() => {
-        console.log("USEEFFECT")
-        const loadCards = async () => {
-            //@ts-ignore
-            await dispatch(getAllCards());
-        };
-        loadCards();
-    }, [dispatch]);
+    // useEffect(() => {
+    //     console.log("USEEFFECT")
+    //     const loadCards = async () => {
+    //         //@ts-ignore
+    //         await dispatch(getAllCards());
+    //     };
+    //     loadCards();
+    // }, [dispatch]);
 
-
-
-    //* Stub
-    // const {getCards} = new StubLib();
-    // const list: Card[] = getCards();
-    // const req =  fetch('https://omgvamp-hearthstone-v1.p.rapidapi.com/cards')
-
-    //https://us.api.blizzard.com/hearthstone/cards/678?locale=en_US
 
     //* Search : 
     const [searchValue, setSearchValue] = useState('');
@@ -78,7 +65,10 @@ export default function ListScreen({navigation}){
                 data={filteredList} 
                 renderItem={({item}) =>
                     <TouchableHighlight onPress={() => navigation.navigate("ListFav")}>
-                        <ListItemComponent url={item.img}/>
+                        <Item route={{
+                            card: item,
+                            bool: false
+                        }} ></Item>
                     </TouchableHighlight>
                 } 
                 keyExtractor={(item: Card) => item.id.toString()}
@@ -99,25 +89,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         
     },
-    border: {
-        flex: 1,
-        backgroundColor: '#ff0000',
-        maxHeight : 100,
-        borderWidth : 15,
-        borderRadius : 15,
-        borderColor : '#00ffaa',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    item: {
-        borderRadius : 15,
-        backgroundColor: '#efefef',
-        padding: 20,
-        margin : 10,
-    },
-    title: {
-        fontStyle: "italic",
-    },
     textInput: {
         padding: 15,
         margin: 5,
@@ -128,3 +99,4 @@ const styles = StyleSheet.create({
         textAlign:'center'
     }
 });
+
