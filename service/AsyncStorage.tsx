@@ -2,7 +2,7 @@ import { Card } from "../models/Card";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
-export default class Storage {
+export default class StorageHeart {
 
     static async getItem(key: string): Promise<any> {
       try {

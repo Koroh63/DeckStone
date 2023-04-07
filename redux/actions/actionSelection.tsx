@@ -25,7 +25,7 @@ import { Card } from "../../models/Card";
 //   constructor(cardId : String, name : String, manaCost : number, attack : number, health : number, desc : String){
 //     this.cardId = cardId;
 //     this.name = name;
-//     this.manaCost = manaCost;
+//     this.manaCost = manaCost;ADD_FAVORITE_DATA, FETCH_DATA,
 //     this.attack = attack;
 //     this.health = health;
 //     this.desc = desc;
@@ -50,7 +50,7 @@ export const getAllCards = () => {
         //   'content-length':'9505',
         //   'content-type':'application/json; charset=utf-8',
         //   'etag':'W/"74bb-QMT8DIj6saBS1wT4u5WWcEmZAdw"'
-        // }
+        // }ADD_FAVORITE_DATA, FETCH_DATA,
 
         //! Actualisation de l'API (16/03) :
         headers: {
@@ -61,7 +61,7 @@ export const getAllCards = () => {
         //'pageSize':'100'
       };
       //! Actualisation de l'API (16/03) :
-      const CardsPromise = await fetch('https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EU1AbKy9Q7sOUjQYC5AFF1O1JPuoAgCNxk', options);
+      const CardsPromise = await fetch('https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EUe6p4N9uLm8BbsHyYVZXIa4DDBP2hMR05', options);
       //const CardsPromise = await fetch('https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EURTWhjBC2SRb4Ez42BT1kx8R2NcJc07kL', options);
       //console.log("FETCH")
       //console.log(CardsPromise)

@@ -1,5 +1,5 @@
 
-import { StyleSheet, Text, View, Button, TouchableHighlight, TextInput, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableHighlight, TextInput, ImageBackground, LogBox } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from "react";
 import { FlatList } from 'react-native-gesture-handler';
@@ -18,37 +18,16 @@ import { ImageURISource } from 'react-native';
 //  import { BiSearchAlt } from 'react-icons';
 
 //* Components
-import {ListItemComponent} from '../components/ListItemComponent'
-
-
-//@ts-ignore
-const Item = ({url,item}) => { // a mettre dans components et definir une props pour passer le param
-    
-    const HandleAddFav = () => {
-        item.fav = !item.fav
-    }
-    return(
-
-        <View style={styles.item}>
-        <ImageBackground  source={{uri:url}} style={{flex:1, minHeight:250, minWidth:180}}>
-             <TouchableHighlight style={item.fav?styles.favoriteButtonFav:styles.favoriteButtonNonFav} onPress={HandleAddFav}>
-                <FontAwesome name="heart-o" size={50} color="#fff" />
-            </TouchableHighlight>
-        </ImageBackground>
-        
-    </View>
-    );
-}
+import { setFavList } from '../redux/actions/action_setFavList';
+import Item from '../components/ListItemComponent';
 
 //@ts-ignore
 export default function ListScreen({navigation}){
     const [count, setCount] = useState(0);
 
-
-
     //  // Initialize the binding content with the application initial state
     //@ts-ignore
-    const nList = useSelector(state => state.appReducer.cards);
+    var nList = useSelector(state => state.appReducer.cards);
     // Create a const that will hold the react-redux events dispatcher
     const dispatch = useDispatch();
     
@@ -64,12 +43,6 @@ export default function ListScreen({navigation}){
         loadCards();
     }, [dispatch]);
 
-
-
-    
-    // const req =  fetch('https://omgvamp-hearthstone-v1.p.rapidapi.com/cards')
-
-    //https://us.api.blizzard.com/hearthstone/cards/678?locale=en_US
 
     //* Search : 
     const [searchValue, setSearchValue] = useState('');
@@ -92,7 +65,10 @@ export default function ListScreen({navigation}){
                 data={filteredList} 
                 renderItem={({item}) =>
                     <TouchableHighlight onPress={() => navigation.navigate("ListFav")}>
-                        <Item url={item.img} item={item}/>
+                        <Item route={{
+                            card: item,
+                            bool: false
+                        }} ></Item>
                     </TouchableHighlight>
                 } 
                 keyExtractor={(item: Card) => item.id.toString()}
@@ -113,38 +89,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-evenly',
         
     },
-    border: {
-        flex: 1,
-        backgroundColor: '#ff0000',
-        maxHeight : 100,
-        borderWidth : 15,
-        borderRadius : 15,
-        borderColor : '#00ffaa',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    item: {
-        
-    },
-    favoriteButtonNonFav: {
-        position: 'absolute',
-        top: 10,
-        right: 10,
-        backgroundColor: 'red',
-        borderRadius: 50,
-        padding: 10,
-    },
-    favoriteButtonFav: {
-        position: 'absolute',
-        top: 10,
-        right: 10,
-        backgroundColor: 'red',
-        borderRadius: 50,
-        padding: 10,
-    },
-    title: {
-        fontStyle: "italic",
-    },
     textInput: {
         padding: 15,
         margin: 5,
@@ -155,3 +99,4 @@ const styles = StyleSheet.create({
         textAlign:'center'
     }
 });
+
