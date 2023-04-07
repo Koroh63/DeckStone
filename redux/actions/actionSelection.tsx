@@ -78,10 +78,14 @@ export const getAllCards = () => {
                                                                           elt["health"] ? elt["health"] : 0,
                                                                           elt["attack"] ? elt["attack"] : 0,
                                                                           elt["manaCost"] ? elt["manaCost"] : 0,
+                                                                          elt["rarityId"] ? elt["rarityId"] : 0,
                                                                           elt["flavorText"] ? elt["flavorText"] : "",
+                                                                          elt["classId"] ? elt["classId"] : 0,
+                                                                          elt["multiClassIds"] ? elt["multiClassIds"] : "Nothing",
                                                                           elt["image"] ? elt["image"] : "",
                                                                           elt["imageGold"] ? elt["imageGold"] : "",
-                                                                          
+                                                                          elt["cropImage"] ? elt["cropImage"] : "",
+                                                                          elt["artistName"] ? elt["artistName"] : "",
                                                                            )); //, elt["cardSet"], elt["type"], elt["faction"], elt["rarity"], elt["cost"], elt["attack"], elt["health"],elt["text"], elt["flavor"], elt["artist"], elt["collectible"], elt["elite"], elt["race"], elt["img"], elt["imgGold"]
       //elt["cardId"] == null ? elt["cardId"] : ""
       

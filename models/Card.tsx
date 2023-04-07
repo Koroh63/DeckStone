@@ -5,7 +5,7 @@ import {Classe} from "./Classe";
 
 export class Card {
 
-    constructor(id: number,name :string,health : number, attack : number,  manaCost : number, flavorText : string, img : string, imgGold : string){//,set : CardSet,type : Type,clas : Classe,rarity : string,, desc : string,flavor : string,artist : string,collectible : boolean,elite : boolean,race : string,  cropImg :string) {
+    constructor(id: number,name :string,health : number, attack : number,  manaCost : number, rarityId : number, flavorText : string, classId : number, multiClassIds : any, img : string, imgGold : string, cropImage : string, artistName : string){//,set : CardSet,type : Type,clas : Classe,rarity : string,, desc : string,flavor : string,artist : string,collectible : boolean,elite : boolean,race : string,  cropImg :string) {
         this._id=id
         this._name=name
         //this._set=set
@@ -15,13 +15,17 @@ export class Card {
         this._manaCost=manaCost
         this._attack = attack
         this._health = health
+        this._rarityId = rarityId
         // this._desc = desc
         this._flavorText = flavorText
-        // this._artist = artist
+        
+        this._classId = classId
+        this._multiClassIds = multiClassIds
+        this._artistName = artistName
         // this._collectible = collectible
         this._img = img
         this._imgGold = imgGold
-        // this._cropImg = cropImg
+        this._cropImage = cropImage
 
     }
 
@@ -109,6 +113,14 @@ export class Card {
     //     set desc(value: string) {
     //         this._desc = value ;
     //     }
+    private _classId : number;
+
+    get classId(): number {
+        return this._classId;
+    }
+    set classId(value: number) {
+        this._classId = value ;
+    }
 
     private _flavorText : string;
     get flavorText(): string {
@@ -118,13 +130,31 @@ export class Card {
         this._flavorText = value ;
     }
 
-    // private _artist : string
-    // get artist(): string {
-    //     return this._artist;
-    // }
-    // set artist(value: string) {
-    //     this._artist = value ;
-    // }
+    private _rarityId : number;
+    get rarityId(): number {
+        return this._rarityId;
+    }
+    set rarityId(value: number) {
+        this._rarityId = value ;
+    }
+
+    
+    private _multiClassIds : string;
+    get multiClassIds(): string {
+        return this._multiClassIds;
+    }
+    set multiClassIds(value: string) {
+        this._multiClassIds = value ;
+    }
+
+
+    private _artistName : string;
+    get artistName(): string {
+        return this._artistName;
+    }
+    set artistName(value: string) {
+        this._artistName = value ;
+    }
     // private _collectible : boolean
     // get collectible(): boolean {
     //     return this._collectible;
@@ -149,12 +179,12 @@ export class Card {
         set imgGold(value: string) {
             this._imgGold = value ;
         }
-    // private _cropImg : string
-
-    // get cropImg(): string {
-    //     return this._cropImg;
-    // }
-    // set cropImg(value: string) {
-    //     this._cropImg = value;
-    // }
+    
+        private _cropImage : string;
+    get cropImage(): string {
+        return this._cropImage;
+    }
+    set cropImage(value: string) {
+        this._cropImage = value;
+    }
 }

@@ -16,9 +16,12 @@ export default function DetailMain({ route }){
 
     const tableHead = ['Stat', 'Value'];
     const tableData =  [
-        ['cost :', card.manaCost],
-        ['attack : ', card.attack],
-        ['health : ', card.health],
+        ['Mana cost :', card.manaCost],
+        ['Attack : ', card.attack],
+        ['Health : ', card.health],
+        ['Rarity : ', card.rarity],
+        ['Artist : ', card.artistName],
+        ['Class : ', card.classId],
     ]
 
     let pressed : Boolean = false
@@ -75,11 +78,13 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         paddingVertical: 0,
+        paddingHorizontal : 15,
         backgroundColor: '#fff',
         borderRadius : 10,
         borderWidth: 10,
         borderColor: '#efefef',
-        maxHeight:100
+        maxHeight:100,
+        minHeight: 100
     },
     head: { height: 40, backgroundColor: '#f1f8ff', minWidth: '90%'},
     text: { margin: 6 }
