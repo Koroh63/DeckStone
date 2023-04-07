@@ -27,7 +27,7 @@ import Item from '../components/ListItemComponent';
 export default function ListScreen({navigation}){
 
     //@ts-ignore
-    let nList = useSelector(state => state.appReducer.favoriteCards);
+    var nList : Card[] = useSelector(state => state.appReducer.favoriteCards);
     console.log(nList)
 
     const [searchValue, setSearchValue] = useState('');
@@ -51,7 +51,6 @@ export default function ListScreen({navigation}){
                             card: item,
                             bool: true
                         }} />
-                        <Text>"a"</Text>
                     </TouchableHighlight>
                 }
                 keyExtractor={(item: Card) => item.id.toString()}
