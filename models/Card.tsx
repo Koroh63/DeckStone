@@ -77,22 +77,24 @@ export class Card {
     //     this._rarity = value ;
     // }
 
-    private _manaCost : number
-        get manaCost(): number {
-            return this.manaCost;
-        }
-        set manaCost(value: number) {
-            this._manaCost = value ;
-        }
+    private _manaCost: number;
+    get manaCost(): number {
+        return this._manaCost;
+    }
+    
+    set manaCost(value: number) {
+        this._manaCost = value;
+    }
+    
 
-    private _attack : number
+    private _attack : number;
         get attack(): number {
             return this._attack;
         }
         set attack(value: number) {
-            this._attack = value ;
+            this._attack = value;
         }
-    private _health : number
+    private _health : number;
         get health(): number {
             return this._health;
         }
@@ -108,7 +110,7 @@ export class Card {
     //         this._desc = value ;
     //     }
 
-    private _flavorText : string
+    private _flavorText : string;
     get flavorText(): string {
         return this._flavorText;
     }

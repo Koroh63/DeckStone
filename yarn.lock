@@ -1926,7 +1926,16 @@
   "resolved" "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.5.tgz"
   "version" "15.7.5"
 
-"@types/react-native@~0.70.6":
+"@types/react-native-table-component@^1.2.4":
+  "integrity" "sha512-JxTc3HXkBPxY/aFJpb4XFot+CM8ismemFCcPy7GlguX9C7Xc+kCmVOmFmA/o1jX2BNPuM45OS264QL6BMlPa6Q=="
+  "resolved" "https://registry.npmjs.org/@types/react-native-table-component/-/react-native-table-component-1.2.4.tgz"
+  "version" "1.2.4"
+  dependencies:
+    "@types/react" "*"
+    "@types/react-native" "*"
+    "csstype" "^3.0.3"
+
+"@types/react-native@*", "@types/react-native@~0.70.6":
   "integrity" "sha512-0C6sIo13ztzM2llaWdTq0Vpscx3VdU0T8F45kEurWv3l5n+BHm/Mkr8Z+N29eXDYGhTvCz5y2jegB8JyiVa5kw=="
   "resolved" "https://registry.npmjs.org/@types/react-native/-/react-native-0.70.9.tgz"
   "version" "0.70.9"
@@ -2923,7 +2932,7 @@
   dependencies:
     "hyphenate-style-name" "^1.0.3"
 
-"csstype@^3.0.2":
+"csstype@^3.0.2", "csstype@^3.0.3":
   "integrity" "sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw=="
   "resolved" "https://registry.npmjs.org/csstype/-/csstype-3.1.1.tgz"
   "version" "3.1.1"

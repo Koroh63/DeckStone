@@ -7,6 +7,7 @@ import { Table, Row, Rows } from 'react-native-table-component';
 
 //* Components
 import {ListItemComponent} from '../components/ListItemComponent'
+import { ScrollView } from 'react-native-gesture-handler';
 
 //@ts-ignore
 export default function DetailMain({ route }){
@@ -36,10 +37,12 @@ export default function DetailMain({ route }){
                 <ListItemComponent url={card.img}/>
             </View>
 
-            <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
-                <Row data={tableHead} style={styles.head} textStyle={styles.text}/>
-                <Rows data={tableData} textStyle={styles.text}/>
-            </Table>        
+            <ScrollView>
+                <Table borderStyle={{borderWidth: 5, borderColor: '#c8e1ff'}}>
+                    <Row data={tableHead} style={styles.head} textStyle={styles.text}/>
+                    <Rows data={tableData} textStyle={styles.text}/>
+                </Table>
+            </ScrollView>
         </View>
     );
 }
@@ -76,7 +79,8 @@ const styles = StyleSheet.create({
         borderRadius : 10,
         borderWidth: 10,
         borderColor: '#efefef',
+        maxHeight:100
     },
-    head: { height: 40, backgroundColor: '#f1f8ff' },
+    head: { height: 40, backgroundColor: '#f1f8ff', minWidth: '90%'},
     text: { margin: 6 }
 });

@@ -60,8 +60,7 @@ export const getAllCards = () => {
         }
         //'pageSize':'100'
       };
-      //! Actualisation de l'API (29/03) :
-      const CardsPromise = await fetch('https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EUrREr6QW0VZJgpRDgedTYqvX4P2BokjcC  ', options);
+      const CardsPromise = await fetch('https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EUe6p4N9uLm8BbsHyYVZXIa4DDBP2hMR05', options);
       //const CardsPromise = await fetch('https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EUZvGOfXsMKYrjqLJp5mE7IJlhQuELMiPk  ', options);
       //const CardsPromise = await fetch('https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EURTWhjBC2SRb4Ez42BT1kx8R2NcJc07kL', options);
       //console.log("FETCH")
