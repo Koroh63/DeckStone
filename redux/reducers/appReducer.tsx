@@ -1,22 +1,48 @@
-import {FETCH_DATA, ADD_FAVORITE_DATA} from '../constants'
+import { CardProps } from '../../props/favProps'
+import {FETCH_DATA, ADD_FAVORITE_DATA, SET_FAVS} from '../constants'
+import StorageHeart from '../../service/AsyncStorage'
 
 const initialState = {
     cards: [],
-    favoriteCards: [],
-    // cards: ["C_ace", "C_K", "C_Q", "C_J"],
-    // favoriteCards: [ "C_ace", "C_K"],
+    favoriteCards: []
 }
 
 
 // @ts-ignore
 export default appReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_FAVORITE_DATA:
-        // @ts-ignore
-            return {...state, favoriteCards: state.favoriteCards.push(action.payload)};
-        case FETCH_DATA:
-        // @ts-ignore
+        case ADD_FAVORITE_DATA: //Ajout d'une carte aux favoris
+            
+            const a : CardProps  = action.payload
+            if(a.route.bool ==false){
+                if(state.favoriteCards == undefined){
+                    const tab = [a.route.card]
+                    StorageHeart.setItem("favoriteList",tab)
+                    return {...state, favoriteCards : tab};
+                }
+                if( Array.from(state.favoriteCards).every((elem) => elem != a.route.card)){
+
+                    //@ts-ignore
+                    const tab = state.favoriteCards.concat([a.route.card])
+                    StorageHeart.setItem("favoriteList",tab)
+                    return {...state, favoriteCards : tab};
+                }
+                return {...state}
+            }
+            else{
+                const tab = state.favoriteCards.filter((item) => item!= a.route.card)
+                StorageHeart.setItem("favoriteList",tab)
+                return {...state, favoriteCards : tab };
+            }
+
+            
+        case FETCH_DATA: //Récupération des données des cartes depuis l'API
             return {...state, cards: action.payload};
+
+
+        case SET_FAVS: //Récupération des favoris depuis l'async storage
+            //@ts-ignore
+            return {...state, favoriteCards: action.payload}
         default:
             return state;
     }

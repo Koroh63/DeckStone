@@ -1,67 +1,32 @@
 
-import { StyleSheet, Text, View, Button, TouchableHighlight, TextInput } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect } from "react";
+import { StyleSheet,View,TouchableHighlight, TextInput} from 'react-native';
+import React, { useState} from "react";
 import { FlatList } from 'react-native-gesture-handler';
-import {useDispatch, useSelector} from 'react-redux';
-
-import { ThunkAction } from 'redux-thunk';
-
-
-//? possiblement à supprimer
-import { getAllCards } from "../redux/actions/actionSelection"
-
-import { StubLib } from '../data/stub';
+import {useSelector} from 'react-redux';
 import { Card } from '../models/Card';
-import { Image } from 'react-native';
-import { ImageURISource } from 'react-native';
-
-//* Icons
-//  import { BiSearchAlt } from 'react-icons';
+import { FontAwesome } from '@expo/vector-icons';
+import { useDispatch } from "react-redux";
+import {CardProps} from "../props/favProps";
+import { setFavList } from "../redux/actions/action_setFavList";
 
 //* Components
-import {ListItemComponent} from '../components/ListItemComponent'
-
+import { ListItemComponent } from '../components/ListItemComponent';
 
 //@ts-ignore
 export default function ListScreen({navigation}){
-    const [count, setCount] = useState(0);
-
-
-
-    //  // Initialize the binding content with the application initial state
-
     //@ts-ignore
-    const nList = useSelector(state => state.appReducer.cards);
-    // Create a const that will hold the react-redux events dispatcher
-    const dispatch = useDispatch();
-    
-    // Let's define a hook that will be used to update the rendered state after the return will be called
-    // You cannot perform side-effects outside of a useEffect hook
-
-    useEffect(() => {
-        console.log("USEEFFECT")
-        const loadCards = async () => {
-            //@ts-ignore
-            await dispatch(getAllCards());
-        };
-        loadCards();
-    }, [dispatch]);
-
-
-
-    //* Stub
-    // const {getCards} = new StubLib();
-    // const list: Card[] = getCards();
-    // const req =  fetch('https://omgvamp-hearthstone-v1.p.rapidapi.com/cards')
-
-    //https://us.api.blizzard.com/hearthstone/cards/678?locale=en_US
+    var nList = useSelector(state => state.appReducer.cards);
 
     //* Search : 
     const [searchValue, setSearchValue] = useState('');
 
     //@ts-ignore
     const filteredList = nList.filter(item => item.name.toLowerCase().includes(searchValue.toLowerCase()));
+
+    const dispatch = useDispatch()
+    const HandleAddFav = (props : CardProps) => {
+        dispatch(setFavList(props));
+    }
 
     return (
         <View style={styles.container}>
@@ -77,14 +42,18 @@ export default function ListScreen({navigation}){
                 numColumns={2}
                 data={filteredList} 
                 renderItem={({item}) =>
-                    // <TouchableHighlight onPress={() =>  ("DetailCard", {card :item})}>
-                    //     <ListItemComponent url={item.img}/>
-                    // </TouchableHighlight>
-                    <TouchableHighlight onPress={() => navigation.navigate("DetailCard", {card :item, other : 'anything'})}>
-                        <ListItemComponent url={item.img}/>
-                    </TouchableHighlight>
+                    <View>
+                        <TouchableHighlight testID="button" style={item.fav?styles.favoriteButtonFav:styles.favoriteButtonNonFav} 
+                        onPress={() => HandleAddFav({route: { card: item, bool: false }} as CardProps)} >
+                            <FontAwesome name="heart-o" size={50} color="#fff" />
+                        </TouchableHighlight>
+
+                        <TouchableHighlight style={styles.imageItem} onPress={() => navigation.navigate("DetailCard", {card :item, other : 'anything'})}>
+                            <ListItemComponent url={item.img}/>
+                        </TouchableHighlight>
+                    </View>
                 } 
-                keyExtractor={(item: Card) => item.id.toString()}
+                keyExtractor={(item: Card) => item.id}
             />
         </View>
 
@@ -93,33 +62,16 @@ export default function ListScreen({navigation}){
 }
 
 
-
 const styles = StyleSheet.create({
+    imageItem:{
+        zIndex : 0
+    },
     container: {
         flex: 1,
         backgroundColor: '#ac9585',
         alignItems: 'center',
         justifyContent: 'space-evenly',
         
-    },
-    border: {
-        flex: 1,
-        backgroundColor: '#ff0000',
-        maxHeight : 100,
-        borderWidth : 15,
-        borderRadius : 15,
-        borderColor : '#00ffaa',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    item: {
-        borderRadius : 15,
-        backgroundColor: '#efefef',
-        padding: 20,
-        margin : 10,
-    },
-    title: {
-        fontStyle: "italic",
     },
     textInput: {
         padding: 15,
@@ -129,5 +81,24 @@ const styles = StyleSheet.create({
         borderRadius : 15,
         shadowColor: 'grey',
         textAlign:'center'
+    },
+    favoriteButtonNonFav: {
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        backgroundColor: 'red',
+        borderRadius: 50,
+        padding: 10,
+        zIndex : 1,
+    },
+    favoriteButtonFav: {
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        backgroundColor: 'red',
+        borderRadius: 50,
+        padding: 10,
+        zIndex : 1,
     }
 });
+

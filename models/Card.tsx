@@ -1,11 +1,7 @@
-import {isValidNumber} from "react-native-gesture-handler/lib/typescript/web_hammer/utils";
-import {CardSet} from "./CardSet";
-import {Type} from "./Type";
-import {Classe} from "./Classe";
 
 export class Card {
 
-    constructor(id: number,name :string,health : number, attack : number,  manaCost : number, rarityId : number, flavorText : string, classId : number, multiClassIds : any, img : string, imgGold : string, cropImage : string, artistName : string){//,set : CardSet,type : Type,clas : Classe,rarity : string,, desc : string,flavor : string,artist : string,collectible : boolean,elite : boolean,race : string,  cropImg :string) {
+    constructor(id: number,name :string,health : number, attack : number,  manaCost : number, rarityId : number, flavorText : string, classId : number, multiClassIds : any, img : string, imgGold : string, cropImage : string, artistName : string, fav : Boolean){//,set : CardSet,type : Type,clas : Classe,rarity : string,, desc : string,flavor : string,artist : string,collectible : boolean,elite : boolean,race : string,  cropImg :string) {
         this._id=id
         this._name=name
         //this._set=set
@@ -26,11 +22,11 @@ export class Card {
         this._img = img
         this._imgGold = imgGold
         this._cropImage = cropImage
+        this._fav = fav
 
     }
 
     // ID //
-
     private _id : number;
         get id(): number {
             return this._id
@@ -44,12 +40,6 @@ export class Card {
         set name(value: string) {
             this._name = value;
         }
-
-
-    // private _set : CardSet;
-    //     get set(): CardSet{
-    //         return this._set
-    //     }
 
     //     set set(value : CardSet){
     //         this._set = value
@@ -186,5 +176,10 @@ export class Card {
     }
     set cropImage(value: string) {
         this._cropImage = value;
+    }
+    //FAV//
+    public _fav;
+    get fav(): Boolean {
+        return this._fav
     }
 }

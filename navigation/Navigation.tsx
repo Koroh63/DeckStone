@@ -1,20 +1,13 @@
-    import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Button } from 'react-native';
 import React, { useState } from "react";
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-import HomeScreen from '../screens/HomeScreen';
 import ListScreen from '../screens/ListScreen';
 import ListFav from '../screens/ListFav';
 
 import TabBarIcon from '../components/TabBarIcon';
 import StackNavigation from './StackNavigation';
 import DetailStackNav from './DetailStackNav';
-
-
-
 
 export default function Navigation() {
     const BottomTabNavigator = createBottomTabNavigator();

@@ -1,36 +1,60 @@
+import { StyleSheet, Text, View, TouchableNativeFeedback, Image } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getAllCards } from "../redux/actions/actionSelection"
+import StorageHeart from '../service/AsyncStorage';
+import { setList } from '../redux/actions/action_setFavs';
+import Navigation from '../navigation/Navigation';
 
-import { StyleSheet, Text, View, TouchableNativeFeedback } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { NavigationContainer } from '@react-navigation/native';
-import StackNavigation from '../navigation/StackNavigation' 
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-//import Button from 'react-bootstrap/Button';
-
-// @ts-ignore //(ta gueule pour l'erreur sur navigation)
+// @ts-ignore //
 export default function HomeScreen({navigation}) {
+    const dispatch = useDispatch();
+
+    //chargement des listes 
+    useEffect(() => {
+
+        const loadFavCards = async () => {
+            //@ts-ignore
+            const list = await StorageHeart.getItem("favoriteList")
+            //@ts-ignore
+            dispatch(setList(list))
+            
+        };
+        loadFavCards();
+    }, [dispatch]);
+    useEffect(() => {
+        
+        const loadCards = async () => {
+            //@ts-ignore
+            await dispatch(getAllCards());
+        };
+        loadCards();
+    }, [dispatch]);
+
+    const tabNav = Navigation()
+
+
+    // affichage de la homePage
     return (
         <View style={styles.container}>
             <View style={styles.centered}>
-                <Text style={styles.title}>Mes super Nounours !</Text>
+                <Text style={styles.title}>DeckStone</Text>
             </View>
-            <Text>Mon super texte ...</Text>
+            <Text style={styles.txt}>Votre gestionnaire de cartes Hearthstone </Text>
             {/* <MyCustomComponent /> */}
             <View style={styles.MidArea}>
-                <Text style={styles.textStyle}>Nous sommes actuellement dans l'écran d'accueil !</Text>
+                <Image source={require("../assets/logo.png")} style={styles.ige} resizeMode='cover' ></Image>
             </View>
         
-            <View>
-                <Text style={styles.t3}> Vous cherchez une entités ? </Text>
-                <TouchableNativeFeedback onPress={() => navigation.navigate("ListScreen")}>
-                    <Text style={styles.ButtonStyle}> Consulter la liste global !</Text>
+            <View style={styles.butContain}>
+                
+                <TouchableNativeFeedback onPress={() =>  navigation.navigate("ListScreen")}>
+                    <Text style={styles.ButtonStyle}>List</Text>
                 </TouchableNativeFeedback>
-            </View>
-
-            <View>
-                <Text style={styles.t3}> Vous avez des entités favorites ? </Text>
+                
                 <TouchableNativeFeedback onPress={() => navigation.navigate("ListFav")}>
-                    <Text style={styles.ButtonStyle}>Aller sur la page de favoris !</Text>
+                    <Text style={styles.ButtonStyle}>Favoris</Text>
                 </TouchableNativeFeedback>
             </View>
         </View>
@@ -40,38 +64,43 @@ export default function HomeScreen({navigation}) {
     const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: "darksalmon",
+        backgroundColor: "#ac9585",
         alignItems: "center"
     },
     centered: {
         alignItems: "center"
     },
     title: {
-        fontSize: 20,
+        fontSize: 56,
         fontWeight: 'bold',
+        
     },
     MidArea: {
-        justifyContent: "center",
-        backgroundColor: "white",
-        paddingTop: 50,
-        paddingBottom: 50,
-        margin: 40,
-        borderRadius: 15,
+        justifyContent: "center", 
+        
     },
-    textStyle: {
-        textAlign: "center",
+    txt: {
         fontSize: 20,
     },
+    butContain: {
+        flexDirection: 'row'
+
+    },
+    ige:{
+        maxWidth: "110%",
+        maxHeight: 400,
+    },
+
     ButtonStyle :{
-        backgroundColor: "#2E8AE6",
+        backgroundColor: "#F5F5F5",
         borderRadius: 15,
         padding: 20,
-        color: "white",
-        fontSize : 20,
+        color: "black",
+        fontSize : 36,
+        width: "45%",
+        textAlign: 'center',
+        margin: 10,
         fontWeight: 'bold',
     },
-    t3 :{
-        fontSize : 20,
-        fontWeight: 'bold',
-    }
+
 });
