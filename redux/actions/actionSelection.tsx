@@ -14,7 +14,7 @@ export const getAllCards = () => {
           'content-type': 'application/json; charset=utf-8',
           'etag': 'W/"74bb-d4gMlMNks7UGES3Jmn6wzUTXaLI"',
         }
-       
+      
       };
       //! Actualisation de l'API (19/04) :
       const CardsPromise = await fetch('https://us.api.blizzard.com/hearthstone/cards?locale=en_US&access_token=EUo8Snb09AfE3zQR4CoaB71gq1q3qvSmgL', options);
@@ -28,8 +28,17 @@ export const getAllCards = () => {
       //@ts-ignore
       const CardsList: Card[] = CardsListJson['cards'].map(elt => new Card(elt["id"] ? elt["id"] : 1,
                                                                           elt["name"] ? elt["name"] : "",
+                                                                          elt["health"] ? elt["health"] : 0,
+                                                                          elt["attack"] ? elt["attack"] : 0,
+                                                                          elt["manaCost"] ? elt["manaCost"] : 0,
+                                                                          elt["rarityId"] ? elt["rarityId"] : 0,
+                                                                          elt["flavorText"] ? elt["flavorText"] : "",
+                                                                          elt["classId"] ? elt["classId"] : 0,
+                                                                          elt["multiClassIds"] ? elt["multiClassIds"] : "Nothing",
                                                                           elt["image"] ? elt["image"] : "",
                                                                           elt["imageGold"] ? elt["imageGold"] : "",
+                                                                          elt["cropImage"] ? elt["cropImage"] : "",
+                                                                          elt["artistName"] ? elt["artistName"] : "",
                                                                            )); //, elt["cardSet"], elt["type"], elt["faction"], elt["rarity"], elt["cost"], elt["attack"], elt["health"],elt["text"], elt["flavor"], elt["artist"], elt["collectible"], elt["elite"], elt["race"], elt["img"], elt["imgGold"]
       //elt["cardId"] == null ? elt["cardId"] : ""
 

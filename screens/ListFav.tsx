@@ -5,7 +5,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import {useSelector} from 'react-redux';
 
 import { Card } from '../models/Card';
-import Item from '../components/ListItemComponent';
+import Item from '../components/ListeFavComponent';
 
 
 
@@ -28,14 +28,14 @@ export default function ListScreen({navigation}){
                 style={styles.textInput}
                 value={searchValue}
                 onChangeText={text => setSearchValue(text)}
-                placeholder="Rechercher une carte..."
+                placeholder="Rechercher une carte...."
             />
 
             <FlatList
                 numColumns={2}
                 data={filteredList}
                 renderItem={({item}) =>
-                    <TouchableHighlight onPress={() => navigation.navigate("ListFav")}>
+                    <TouchableHighlight onPress={() => navigation.navigate("DetailCard", {card :item, other : 'anything'})}>
                         <Item route={{
                             card: item,
                             bool: true

@@ -17,8 +17,11 @@ export default function HomeScreen({navigation}) {
         const loadFavCards = async () => {
             //@ts-ignore
             const list = await StorageHeart.getItem("favoriteList")
-            //@ts-ignore
-            dispatch(setList(list))
+            
+            if(list!=null){
+                //@ts-ignore
+                dispatch(setList(list))
+            }
             
         };
         loadFavCards();
@@ -32,7 +35,6 @@ export default function HomeScreen({navigation}) {
         loadCards();
     }, [dispatch]);
 
-    const tabNav = Navigation()
 
 
     // affichage de la homePage
