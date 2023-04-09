@@ -1,45 +1,37 @@
 
 export class Card {
 
-    constructor(id: number,name :string,health : number, attack : number,  manaCost : number, rarityId : number, flavorText : string, classId : number, multiClassIds : any, img : string, imgGold : string, cropImage : string, artistName : string, fav : Boolean){//,set : CardSet,type : Type,clas : Classe,rarity : string,, desc : string,flavor : string,artist : string,collectible : boolean,elite : boolean,race : string,  cropImg :string) {
-        this._id=id
-        this._name=name
+    constructor(id: string,name :string,health : string, attack : string,  manaCost : string, rarityId : string, flavorText : string, classId : string, multiClassIds : any, img : string, imgGold : string, cropImage : string, artistName : string, fav : boolean){
+        this.id=id
+        this.name=name
         //this._set=set
         // this._type=type
         // this._class=clas
         // this._rarity=rarity
-        this._manaCost=manaCost
-        this._attack = attack
-        this._health = health
-        this._rarityId = rarityId
+        this.manaCost=manaCost
+        this.attack = attack
+        this.health = health
+        this.rarityId = rarityId
         // this._desc = desc
-        this._flavorText = flavorText
+        this.flavorText = flavorText
         
-        this._classId = classId
-        this._multiClassIds = multiClassIds
-        this._artistName = artistName
+        this.classId = classId
+        this.multiClassIds = multiClassIds
+        this.artistName = artistName
         // this._collectible = collectible
-        this._img = img
-        this._imgGold = imgGold
-        this._cropImage = cropImage
-        this._fav = fav
+        this.img = img
+        this.imgGold = imgGold
+        this.cropImage = cropImage
+        this.fav = fav
 
     }
 
     // ID //
-    private _id : number;
-        get id(): number {
-            return this._id
-        }
+    public id: string;
 
     // NAME //
-    private _name : string;
-        get name(): string {
-            return this._name;
-        }
-        set name(value: string) {
-            this._name = value;
-        }
+    public name: string
+        
 
     //     set set(value : CardSet){
     //         this._set = value
@@ -71,30 +63,13 @@ export class Card {
     //     this._rarity = value ;
     // }
 
-    private _manaCost: number;
-    get manaCost(): number {
-        return this._manaCost;
-    }
+    public manaCost : string;
     
-    set manaCost(value: number) {
-        this._manaCost = value;
-    }
+    
     
 
-    private _attack : number;
-        get attack(): number {
-            return this._attack;
-        }
-        set attack(value: number) {
-            this._attack = value;
-        }
-    private _health : number;
-        get health(): number {
-            return this._health;
-        }
-        set health(value: number) {
-            this._health = value ;
-        }
+    public attack : string;
+    public health : string;
 
     // private _desc : string
     //     get desc(): string {
@@ -103,48 +78,17 @@ export class Card {
     //     set desc(value: string) {
     //         this._desc = value ;
     //     }
-    private _classId : number;
+    public classId : string;
 
-    get classId(): number {
-        return this._classId;
-    }
-    set classId(value: number) {
-        this._classId = value ;
-    }
+    public flavorText : string
 
-    private _flavorText : string;
-    get flavorText(): string {
-        return this._flavorText;
-    }
-    set flavor(value: string) {
-        this._flavorText = value ;
-    }
-
-    private _rarityId : number;
-    get rarityId(): number {
-        return this._rarityId;
-    }
-    set rarityId(value: number) {
-        this._rarityId = value ;
-    }
+    public rarityId : string
 
     
-    private _multiClassIds : string;
-    get multiClassIds(): string {
-        return this._multiClassIds;
-    }
-    set multiClassIds(value: string) {
-        this._multiClassIds = value ;
-    }
+    public multiClassIds : any;
 
 
-    private _artistName : string;
-    get artistName(): string {
-        return this._artistName;
-    }
-    set artistName(value: string) {
-        this._artistName = value ;
-    }
+    public artistName : string;
     // private _collectible : boolean
     // get collectible(): boolean {
     //     return this._collectible;
@@ -153,33 +97,11 @@ export class Card {
     //     this._collectible = value;
     // }
 
-    private _img : string
-
-        get img(): string {
-            return this._img;
-        }
-        set img(value: string) {
-            this._img = value ;
-        }
-    private _imgGold : string
-
-        get imgGold(): string {
-            return this._imgGold;
-        }
-        set imgGold(value: string) {
-            this._imgGold = value ;
-        }
+    public img : string;
+    public imgGold : string;
     
-        private _cropImage : string;
-    get cropImage(): string {
-        return this._cropImage;
-    }
-    set cropImage(value: string) {
-        this._cropImage = value;
-    }
-    //FAV//
-    public _fav;
-    get fav(): Boolean {
-        return this._fav
-    }
+        public cropImage : string;
+        //FAV//
+        public fav : boolean;
+    
 }

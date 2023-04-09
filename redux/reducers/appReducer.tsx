@@ -20,7 +20,8 @@ export default appReducer = (state = initialState, action) => {
                     StorageHeart.setItem("favoriteList",tab)
                     return {...state, favoriteCards : tab};
                 }
-                if( Array.from(state.favoriteCards).every((elem) => elem != a.route.card)){
+                //@ts-ignore
+                if( Array.from(state.favoriteCards).every((elem) => elem.id != a.route.card.id)){
 
                     //@ts-ignore
                     const tab = state.favoriteCards.concat([a.route.card])

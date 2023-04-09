@@ -11,6 +11,7 @@ import { setFavList } from "../redux/actions/action_setFavList";
 
 //* Components
 import { ListItemComponent } from '../components/ListItemComponent';
+import Item from '../components/ListeFavComponent';
 
 //@ts-ignore
 export default function ListScreen({navigation}){
@@ -43,13 +44,13 @@ export default function ListScreen({navigation}){
                 data={filteredList} 
                 renderItem={({item}) =>
                     <View>
-                        <TouchableHighlight testID="button" style={item.fav?styles.favoriteButtonFav:styles.favoriteButtonNonFav} 
-                        onPress={() => HandleAddFav({route: { card: item, bool: false }} as CardProps)} >
-                            <FontAwesome name="heart-o" size={50} color="#fff" />
-                        </TouchableHighlight>
+                    
 
                         <TouchableHighlight style={styles.imageItem} onPress={() => navigation.navigate("DetailCard", {card :item, other : 'anything'})}>
-                            <ListItemComponent url={item.img}/>
+                            <Item route={{
+                            card: item,
+                            bool: false
+                        }} ></Item>
                         </TouchableHighlight>
                     </View>
                 } 
