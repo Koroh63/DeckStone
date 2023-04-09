@@ -24,7 +24,7 @@
 
 
 
-# :bookmark_tabs: Présentation
+# :bookmark: Présentation
 
 DeckStone est une application master detail créé grâce au framework React Native en TypeScript  et en JavaScript. 
 Elle vous permet la gestion des cartes hearstone que vous posséder avec la consultation des informations des cartes et l'utilisation de favoris persistants. 
@@ -51,18 +51,18 @@ Elle vous permet la gestion des cartes hearstone que vous posséder avec la cons
 
 ## ```Application features```
 
-:construction_worker: **API** : Nous utilisons l'API officielle du jeu pour récupérer nos données, cependant nous n'avons pas pu gérer le changement de token, nous le changeons donc à la main.   
+:construction: **API** : Nous utilisons l'API officielle du jeu pour récupérer nos données, cependant nous n'avons pas pu gérer le changement de token, nous le changeons donc à la main.   
 ***Source*** : https://develop.battle.net/documentation/hearthstone/game-data-apis  
 :white_check_mark: **Store favorite data into phone storage** : Nous utilison l'AsyncStorage pour sauvegarder la liste des favoris dans le téléphone.  
-:construction_worker: **Write Tests** : Nous testons les actions, le reducer et les composants UI que nous avons implémenter, cependant les éléments utilisant indirectement l'AsyncStorage ne passent pas les tests à cause d'un problème d'utilisation du mockAsyncStorage.  
+:construction: **Write Tests** : Nous testons les actions, le reducer et les composants UI que nous avons implémenter, cependant les éléments utilisant indirectement l'AsyncStorage ne passent pas les tests à cause d'un problème d'utilisation du mockAsyncStorage.  
 
 ## ``Bonus``
 
-* :warning: **Dark/Light mode switch** : Nous n'avons pas mis en place ce mode 
-* :construction_worker: **Sexy UI** : A vous de juger ! 
+* :construction: **Dark/Light mode switch** : Nous n'avons mis en place cette gestion seulement dans la branche dédié par souci de visuel
+* :construction: **Sexy UI** : A vous de juger ! 
 
 
-# :construction_worker: Développeurs
+# :construction: Développeurs
 
 - Corentin RICHARD : corentin.richard@etu.uca.fr
 - Pierre FERREIRA : pierre.ferreira@etu.uca.fr
