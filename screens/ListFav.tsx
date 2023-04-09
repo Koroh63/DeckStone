@@ -32,6 +32,9 @@ export default function ListScreen({navigation}){
 
     const [searchValue, setSearchValue] = useState('');
 
+    const filteredList = nList.filter(item => item.name.toLowerCase().includes(searchValue.toLowerCase()));
+
+
     return (
         <View style={styles.container}>
 
@@ -44,7 +47,7 @@ export default function ListScreen({navigation}){
 
             <FlatList
                 numColumns={2}
-                data={nList}
+                data={filteredList}
                 renderItem={({item}) =>
                     <TouchableHighlight onPress={() => navigation.navigate("ListFav")}>
                         <Item route={{
