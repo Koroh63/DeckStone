@@ -31,29 +31,29 @@ Elle vous permet la gestion des cartes hearstone que vous posséder avec la cons
 
 
 
-# Notation :green_check_mark:
+# Notation :white_check_mark:
 
 
 ## ``` Documentation ```
 
-:green_check_mark: **ReadMe**  
-:green_check_mark: **Sketches** : ![Sketchs](./assets/Sketchs.PNG)
+:white_check_mark: **ReadMe**  
+:white_check_mark: **Sketches** : ![Sketchs](./assets/Sketchs.PNG)
 
 ## ```Bases```
 
-:green_check_mark: **Navigation** : Nous avons une barre de navigation fonctionnel nous permettant de naviguer entre les trois écrans.  
-:green_check_mark: **Store** : Nous utilisons le store pour charger nos données et les stocker mais aussi pour gérer les favoris.  
-:green_check_mark: **Actions** : Nous utilisons les actions pour charger les données depuis le redux mais aussi pour ajouter et supprimer les favoris.  
-:green_check_mark: **Display List of Items** : Nous affichons la liste des cartes et celles des favoris dans 2 écrans différents.  
-:green_check_mark: **Display image** : Chaque cartes sont affiché par un component qui affiche l'image de la carte.  
-:green_check_mark: **Child props** : Nous utilisons un props pour passer la carte au component qui l'affiche.  
-:green_check_mark: **TextInput** : Une recherche par nom peut être effectué par dans les 2 listes.  
+:white_check_mark: **Navigation** : Nous avons une barre de navigation fonctionnel nous permettant de naviguer entre les trois écrans.  
+:white_check_mark: **Store** : Nous utilisons le store pour charger nos données et les stocker mais aussi pour gérer les favoris.  
+:white_check_mark: **Actions** : Nous utilisons les actions pour charger les données depuis le redux mais aussi pour ajouter et supprimer les favoris.  
+:white_check_mark: **Display List of Items** : Nous affichons la liste des cartes et celles des favoris dans 2 écrans différents.  
+:white_check_mark: **Display image** : Chaque cartes sont affiché par un component qui affiche l'image de la carte.  
+:white_check_mark: **Child props** : Nous utilisons un props pour passer la carte au component qui l'affiche.  
+:white_check_mark: **TextInput** : Une recherche par nom peut être effectué par dans les 2 listes.  
 
 ## ```Application features```
 
 :construction_worker: **API** : Nous utilisons l'API officielle du jeu pour récupérer nos données, cependant nous n'avons pas pu gérer le changement de token, nous le changeons donc à la main.   
 ***Source*** : https://develop.battle.net/documentation/hearthstone/game-data-apis
-:green_check_mark: **Store favorite data into phone storage** : Nous utilison l'AsyncStorage pour sauvegarder la liste des favoris dans le téléphone.  
+:white_check_mark: **Store favorite data into phone storage** : Nous utilison l'AsyncStorage pour sauvegarder la liste des favoris dans le téléphone.  
 :construction_worker: **Write Tests** : Nous testons les actions, le reducer et les composants UI que nous avons implémenter, cependant les éléments utilisant indirectement l'AsyncStorage ne passent pas les tests à cause d'un problème d'utilisation du mockAsyncStorage.  
 
 ## ``Bonus``
