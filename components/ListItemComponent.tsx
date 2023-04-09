@@ -22,8 +22,8 @@ export default function Item(props: CardProps){ // a mettre dans components et d
 
         /* dispatch , */
     <View style={styles.item}>
-        <ImageBackground  source={{uri:item.img}} style={{flex:1, minHeight:250, minWidth:180}}>
-             <TouchableHighlight style={item.fav?styles.favoriteButtonFav:styles.favoriteButtonNonFav} onPress={() => HandleAddFav(props)} >
+        <ImageBackground testID="card-url"  source={{uri:item.img}} style={{flex:1, minHeight:250, minWidth:180}}>
+             <TouchableHighlight testID="button" style={item.fav?styles.favoriteButtonFav:styles.favoriteButtonNonFav} onPress={() => HandleAddFav(props)} >
                 <FontAwesome name="heart-o" size={50} color="#fff" />
             </TouchableHighlight>
         </ImageBackground>

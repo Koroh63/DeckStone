@@ -1,5 +1,3 @@
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import { Card } from '../../models/Card'
 import { CardProps } from '../../props/favprops'
 import {FETCH_DATA, ADD_FAVORITE_DATA, SET_FAVS} from '../constants'
 import StorageHeart from '../../service/AsyncStorage'
