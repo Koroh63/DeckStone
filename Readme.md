@@ -52,7 +52,7 @@ Elle vous permet la gestion des cartes hearstone que vous posséder avec la cons
 ## ```Application features```
 
 :construction_worker: **API** : Nous utilisons l'API officielle du jeu pour récupérer nos données, cependant nous n'avons pas pu gérer le changement de token, nous le changeons donc à la main.   
-***Source*** : https://develop.battle.net/documentation/hearthstone/game-data-apis
+***Source*** : https://develop.battle.net/documentation/hearthstone/game-data-apis  
 :white_check_mark: **Store favorite data into phone storage** : Nous utilison l'AsyncStorage pour sauvegarder la liste des favoris dans le téléphone.  
 :construction_worker: **Write Tests** : Nous testons les actions, le reducer et les composants UI que nous avons implémenter, cependant les éléments utilisant indirectement l'AsyncStorage ne passent pas les tests à cause d'un problème d'utilisation du mockAsyncStorage.  
 
