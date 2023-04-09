@@ -7,7 +7,7 @@ export default class StorageHeart {
     static async getItem(key: string): Promise<any> {
       try {
         const value = await AsyncStorage.getItem(key);
-        console.log("load")
+        
         if (value !== null) {
           return JSON.parse(value);
         }
@@ -20,7 +20,7 @@ export default class StorageHeart {
     static async setItem(key: string, value: any): Promise<void> {
       try {
         await AsyncStorage.setItem(key, JSON.stringify(value));
-        console.log("save")
+        
       } catch (e) {
         console.error(`AsyncStorage setItem error: ${e}`);
       }

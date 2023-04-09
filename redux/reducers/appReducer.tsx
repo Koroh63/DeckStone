@@ -1,4 +1,4 @@
-import { CardProps } from '../../props/favprops'
+import { CardProps } from '../../props/favProps'
 import {FETCH_DATA, ADD_FAVORITE_DATA, SET_FAVS} from '../constants'
 import StorageHeart from '../../service/AsyncStorage'
 
@@ -11,7 +11,7 @@ const initialState = {
 // @ts-ignore
 export default appReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_FAVORITE_DATA:
+        case ADD_FAVORITE_DATA: //Ajout d'une carte aux favoris
             
             const a : CardProps  = action.payload
             if(a.route.bool ==false){
@@ -24,7 +24,6 @@ export default appReducer = (state = initialState, action) => {
 
                     //@ts-ignore
                     const tab = state.favoriteCards.concat([a.route.card])
-                    console.log(state.favoriteCards)
                     StorageHeart.setItem("favoriteList",tab)
                     return {...state, favoriteCards : tab};
                 }
@@ -35,11 +34,14 @@ export default appReducer = (state = initialState, action) => {
                 StorageHeart.setItem("favoriteList",tab)
                 return {...state, favoriteCards : tab };
             }
-        case FETCH_DATA:
+
+            
+        case FETCH_DATA: //Récupération des données des cartes depuis l'API
             return {...state, cards: action.payload};
-        case SET_FAVS:
+
+
+        case SET_FAVS: //Récupération des favoris depuis l'async storage
             //@ts-ignore
-            console.log("Set_favs : ",action.payload)
             return {...state, favoriteCards: action.payload}
         default:
             return state;

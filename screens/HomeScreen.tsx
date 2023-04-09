@@ -1,37 +1,22 @@
-
 import { StyleSheet, Text, View, TouchableNativeFeedback, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { NavigationContainer } from '@react-navigation/native';
-import StackNavigation from '../navigation/StackNavigation' 
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getAllCards } from "../redux/actions/actionSelection"
 import StorageHeart from '../service/AsyncStorage';
-import { setFavList } from '../redux/actions/action_setFavList';
 import { setList } from '../redux/actions/action_setFavs';
-import { Card } from '../models/Card';
-//import { setList } from '../redux/actions/action_setList';
-
-
-
-
-
+import Navigation from '../navigation/Navigation';
 
 
 // @ts-ignore //
 export default function HomeScreen({navigation}) {
-
-
     const dispatch = useDispatch();
 
+    //chargement des listes 
     useEffect(() => {
-        console.log("USEEFFECT")
+
         const loadFavCards = async () => {
             //@ts-ignore
-            //await dispatch(getAllCards());
             const list = await StorageHeart.getItem("favoriteList")
-            console.log("async favs : ",list)
             //@ts-ignore
             dispatch(setList(list))
             
@@ -39,7 +24,7 @@ export default function HomeScreen({navigation}) {
         loadFavCards();
     }, [dispatch]);
     useEffect(() => {
-        console.log("USEEFFECT")
+        
         const loadCards = async () => {
             //@ts-ignore
             await dispatch(getAllCards());
@@ -47,10 +32,10 @@ export default function HomeScreen({navigation}) {
         loadCards();
     }, [dispatch]);
 
+    const tabNav = Navigation()
 
 
-
-
+    // affichage de la homePage
     return (
         <View style={styles.container}>
             <View style={styles.centered}>
@@ -64,7 +49,7 @@ export default function HomeScreen({navigation}) {
         
             <View style={styles.butContain}>
                 
-                <TouchableNativeFeedback onPress={() => navigation.navigate("ListScreen")}>
+                <TouchableNativeFeedback onPress={() =>  navigation.navigate("ListScreen")}>
                     <Text style={styles.ButtonStyle}>List</Text>
                 </TouchableNativeFeedback>
                 
@@ -107,10 +92,10 @@ export default function HomeScreen({navigation}) {
     },
 
     ButtonStyle :{
-        backgroundColor: "#2E8AE6",
+        backgroundColor: "#F5F5F5",
         borderRadius: 15,
         padding: 20,
-        color: "white",
+        color: "black",
         fontSize : 36,
         width: "45%",
         textAlign: 'center',

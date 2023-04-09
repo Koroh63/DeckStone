@@ -11,12 +11,10 @@ import ListFav from '../screens/ListFav';
 export default function StackNavigation() {
     const Stack = createStackNavigator();
     return (
-        //<NavigationContainer>
             <Stack.Navigator initialRouteName="Home">
                 <Stack.Screen name="Home" component={HomeScreen}/>
                 <Stack.Screen name="ListScreen" component={ListScreen}/>
                 <Stack.Screen name="ListFav" component={ListFav}/>
             </Stack.Navigator>
-        //</NavigationContainer>
     )
 }

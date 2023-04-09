@@ -1,24 +1,11 @@
 
-import { StyleSheet, Text, View, Button, TouchableHighlight, TextInput, ImageBackground } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect } from "react";
+import { StyleSheet, View, TouchableHighlight, TextInput } from 'react-native';
+import React, { useState} from "react";
 import { FlatList } from 'react-native-gesture-handler';
-import {useDispatch, useSelector} from 'react-redux';
-import { FontAwesome } from '@expo/vector-icons';
-import { ThunkAction } from 'redux-thunk';
+import {useSelector} from 'react-redux';
 
-
-//? possiblement à supprimer
-import { getAllCards } from "../redux/actions/actionSelection"
 import { Card } from '../models/Card';
-import { Image } from 'react-native';
-import { ImageURISource } from 'react-native';
 import Item from '../components/ListItemComponent';
-
-//* Icons
-//  import { BiSearchAlt } from 'react-icons';
-
-//* Components
 
 
 
@@ -28,7 +15,6 @@ export default function ListScreen({navigation}){
 
     //@ts-ignore
     var nList : Card[] = useSelector(state => state.appReducer.favoriteCards);
-    console.log(" favs : ",nList)
 
     const [searchValue, setSearchValue] = useState('');
 

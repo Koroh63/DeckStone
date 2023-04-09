@@ -3,7 +3,7 @@ import { Card } from "../models/Card";
 import { setFavList } from "../redux/actions/action_setFavList";
 import { ImageBackground, TouchableHighlight, View } from "react-native";
 import React, { useEffect } from "react";
-import {CardProps} from "../props/favprops"
+import {CardProps} from "../props/favProps"
 import { FontAwesome } from '@expo/vector-icons';
 import { StyleSheet} from 'react-native';
 
@@ -15,8 +15,7 @@ export default function Item(props: CardProps){ // a mettre dans components et d
     const dispatch = useDispatch()
 
     const HandleAddFav = (props : CardProps) => {
-        console.log("add new card")
-            dispatch(setFavList(props));
+        dispatch(setFavList(props));
     }
     return(
 
