@@ -5,7 +5,7 @@ import {Card} from '../../models/Card'
 
 export const setCardsList = (List: Card[]) => {
     return {
-        type: "FETCH_DATA",
+        type: FETCH_DATA,
         payload: List,
     };
 }
